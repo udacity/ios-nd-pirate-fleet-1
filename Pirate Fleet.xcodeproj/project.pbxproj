@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A914B9721B94E260005C7E2F /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914B9711B94E260005C7E2F /* Computer.swift */; };
+		A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7EF1B8E6DE2009E89A9 /* Structs.swift */; };
+		A932F7F21B8E6E29009E89A9 /* Protocols-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */; };
+		A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F31B8E6EAD009E89A9 /* Enums.swift */; };
+		A9601EC51B8E8B8800F9D044 /* MineHit.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9601EC41B8E8B8800F9D044 /* MineHit.pdf */; };
+		A9A5675B1B97A30B00F91B12 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5675A1B97A30B00F91B12 /* Protocols.swift */; settings = {ASSET_TAGS = (); }; };
+		A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */; };
+		A9C2B4611B8E2D38007983DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B45F1B8E2D38007983DB /* Main.storyboard */; };
+		A9C2B4631B8E2D38007983DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4621B8E2D38007983DB /* Assets.xcassets */; };
+		A9C2B4661B8E2D38007983DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */; };
+		A9C2B47F1B8E2D79007983DB /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B46D1B8E2D79007983DB /* GridView.swift */; };
+		A9C2B4821B8E2D79007983DB /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B4701B8E2D79007983DB /* GridViewController.swift */; };
+		A9C2B4831B8E2D79007983DB /* PirateFleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B4711B8E2D79007983DB /* PirateFleetViewController.swift */; };
+		A9C2B4841B8E2D79007983DB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B4721B8E2D79007983DB /* Settings.swift */; };
+		A9C2B4871B8E2D79007983DB /* Hit.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4751B8E2D79007983DB /* Hit.pdf */; };
+		A9C2B4881B8E2D79007983DB /* Miss.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4761B8E2D79007983DB /* Miss.pdf */; };
+		A9C2B4891B8E2D79007983DB /* ShipEndRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4771B8E2D79007983DB /* ShipEndRight.pdf */; };
+		A9C2B48A1B8E2D79007983DB /* ShipEndLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4781B8E2D79007983DB /* ShipEndLeft.pdf */; };
+		A9C2B48B1B8E2D79007983DB /* ShipEndDown.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4791B8E2D79007983DB /* ShipEndDown.pdf */; };
+		A9C2B48C1B8E2D79007983DB /* ShipBodyVert.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47A1B8E2D79007983DB /* ShipBodyVert.pdf */; };
+		A9C2B48D1B8E2D79007983DB /* ShipBodyHorz.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47B1B8E2D79007983DB /* ShipBodyHorz.pdf */; };
+		A9C2B48E1B8E2D79007983DB /* Mine.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47C1B8E2D79007983DB /* Mine.pdf */; };
+		A9C2B48F1B8E2D79007983DB /* ShipEndUp.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47D1B8E2D79007983DB /* ShipEndUp.pdf */; };
+		A9C2B4901B8E2D79007983DB /* Water.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47E1B8E2D79007983DB /* Water.pdf */; };
+		A9D83B5F1B97881C00EBA850 /* ControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D83B5E1B97881C00EBA850 /* ControlCenter.swift */; settings = {ASSET_TAGS = (); }; };
+		A9DDAF261B9629AD00D64CD7 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DDAF251B9629AD00D64CD7 /* Functions.swift */; settings = {ASSET_TAGS = (); }; };
+		A9EAC0BB1B8FD833008AD77B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAC0BA1B8FD833008AD77B /* Player.swift */; };
+		A9EAC0BD1B8FDE98008AD77B /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAC0BC1B8FDE98008AD77B /* Human.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A914B9711B94E260005C7E2F /* Computer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		A932F7EF1B8E6DE2009E89A9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Protocols-Extensions.swift"; sourceTree = "<group>"; };
+		A932F7F31B8E6EAD009E89A9 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		A9601EC41B8E8B8800F9D044 /* MineHit.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = MineHit.pdf; path = Images/MineHit.pdf; sourceTree = "<group>"; };
+		A9A5675A1B97A30B00F91B12 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		A9C2B4581B8E2D38007983DB /* Pirate Fleet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pirate Fleet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A9C2B4601B8E2D38007983DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A9C2B4621B8E2D38007983DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9C2B4651B8E2D38007983DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9C2B4671B8E2D38007983DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9C2B46D1B8E2D79007983DB /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		A9C2B4701B8E2D79007983DB /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		A9C2B4711B8E2D79007983DB /* PirateFleetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PirateFleetViewController.swift; sourceTree = "<group>"; };
+		A9C2B4721B8E2D79007983DB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		A9C2B4751B8E2D79007983DB /* Hit.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Hit.pdf; path = Images/Hit.pdf; sourceTree = "<group>"; };
+		A9C2B4761B8E2D79007983DB /* Miss.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Miss.pdf; path = Images/Miss.pdf; sourceTree = "<group>"; };
+		A9C2B4771B8E2D79007983DB /* ShipEndRight.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipEndRight.pdf; path = Images/ShipEndRight.pdf; sourceTree = "<group>"; };
+		A9C2B4781B8E2D79007983DB /* ShipEndLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipEndLeft.pdf; path = Images/ShipEndLeft.pdf; sourceTree = "<group>"; };
+		A9C2B4791B8E2D79007983DB /* ShipEndDown.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipEndDown.pdf; path = Images/ShipEndDown.pdf; sourceTree = "<group>"; };
+		A9C2B47A1B8E2D79007983DB /* ShipBodyVert.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipBodyVert.pdf; path = Images/ShipBodyVert.pdf; sourceTree = "<group>"; };
+		A9C2B47B1B8E2D79007983DB /* ShipBodyHorz.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipBodyHorz.pdf; path = Images/ShipBodyHorz.pdf; sourceTree = "<group>"; };
+		A9C2B47C1B8E2D79007983DB /* Mine.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Mine.pdf; path = Images/Mine.pdf; sourceTree = "<group>"; };
+		A9C2B47D1B8E2D79007983DB /* ShipEndUp.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShipEndUp.pdf; path = Images/ShipEndUp.pdf; sourceTree = "<group>"; };
+		A9C2B47E1B8E2D79007983DB /* Water.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Water.pdf; path = Images/Water.pdf; sourceTree = "<group>"; };
+		A9D83B5E1B97881C00EBA850 /* ControlCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenter.swift; sourceTree = "<group>"; };
+		A9DDAF251B9629AD00D64CD7 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		A9EAC0BA1B8FD833008AD77B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A9EAC0BC1B8FDE98008AD77B /* Human.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9C2B4551B8E2D38007983DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A907D9471B9540B100957634 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B46D1B8E2D79007983DB /* GridView.swift */,
+				A9C2B4701B8E2D79007983DB /* GridViewController.swift */,
+			);
+			name = Grid;
+			sourceTree = "<group>";
+		};
+		A932F7F51B8E7582009E89A9 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				A9EAC0BA1B8FD833008AD77B /* Player.swift */,
+				A9EAC0BC1B8FDE98008AD77B /* Human.swift */,
+				A914B9711B94E260005C7E2F /* Computer.swift */,
+			);
+			name = Players;
+			sourceTree = "<group>";
+		};
+		A9C2B44F1B8E2D38007983DB = {
+			isa = PBXGroup;
+			children = (
+				A9C2B45A1B8E2D38007983DB /* Pirate Fleet */,
+				A9C2B4591B8E2D38007983DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9C2B4591B8E2D38007983DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B4581B8E2D38007983DB /* Pirate Fleet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9C2B45A1B8E2D38007983DB /* Pirate Fleet */ = {
+			isa = PBXGroup;
+			children = (
+				A9D83B5E1B97881C00EBA850 /* ControlCenter.swift */,
+				A9D83B601B97882300EBA850 /* Under the Hood */,
+			);
+			path = "Pirate Fleet";
+			sourceTree = "<group>";
+		};
+		A9C2B4911B8E2D7F007983DB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B4621B8E2D38007983DB /* Assets.xcassets */,
+				A9C2B4751B8E2D79007983DB /* Hit.pdf */,
+				A9C2B4761B8E2D79007983DB /* Miss.pdf */,
+				A9C2B4771B8E2D79007983DB /* ShipEndRight.pdf */,
+				A9C2B4781B8E2D79007983DB /* ShipEndLeft.pdf */,
+				A9C2B4791B8E2D79007983DB /* ShipEndDown.pdf */,
+				A9C2B47D1B8E2D79007983DB /* ShipEndUp.pdf */,
+				A9C2B47A1B8E2D79007983DB /* ShipBodyVert.pdf */,
+				A9C2B47B1B8E2D79007983DB /* ShipBodyHorz.pdf */,
+				A9601EC41B8E8B8800F9D044 /* MineHit.pdf */,
+				A9C2B47C1B8E2D79007983DB /* Mine.pdf */,
+				A9C2B47E1B8E2D79007983DB /* Water.pdf */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		A9C2B4921B8E2E37007983DB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B4931B8E2E3E007983DB /* Data */,
+				A9C2B4911B8E2D7F007983DB /* Images */,
+				A9C2B4941B8E2E43007983DB /* Storyboards */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		A9C2B4931B8E2E3E007983DB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B4671B8E2D38007983DB /* Info.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		A9C2B4941B8E2E43007983DB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B45F1B8E2D38007983DB /* Main.storyboard */,
+				A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		A9D83B601B97882300EBA850 /* Under the Hood */ = {
+			isa = PBXGroup;
+			children = (
+				A9C2B4921B8E2E37007983DB /* Assets */,
+				A9C2B4721B8E2D79007983DB /* Settings.swift */,
+				A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */,
+				A9C2B4711B8E2D79007983DB /* PirateFleetViewController.swift */,
+				A907D9471B9540B100957634 /* Grid */,
+				A932F7F51B8E7582009E89A9 /* Players */,
+				A9DDAF271B9629B000D64CD7 /* Utilites */,
+			);
+			name = "Under the Hood";
+			sourceTree = "<group>";
+		};
+		A9DDAF271B9629B000D64CD7 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				A932F7F31B8E6EAD009E89A9 /* Enums.swift */,
+				A9DDAF251B9629AD00D64CD7 /* Functions.swift */,
+				A9A5675A1B97A30B00F91B12 /* Protocols.swift */,
+				A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */,
+				A932F7EF1B8E6DE2009E89A9 /* Structs.swift */,
+			);
+			name = Utilites;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9C2B4571B8E2D38007983DB /* Pirate Fleet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9C2B46A1B8E2D38007983DB /* Build configuration list for PBXNativeTarget "Pirate Fleet" */;
+			buildPhases = (
+				A9C2B4541B8E2D38007983DB /* Sources */,
+				A9C2B4551B8E2D38007983DB /* Frameworks */,
+				A9C2B4561B8E2D38007983DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pirate Fleet";
+			productName = "Pirate Fleet";
+			productReference = A9C2B4581B8E2D38007983DB /* Pirate Fleet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9C2B4501B8E2D38007983DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Udacity;
+				TargetAttributes = {
+					A9C2B4571B8E2D38007983DB = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = A9C2B4531B8E2D38007983DB /* Build configuration list for PBXProject "Pirate Fleet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9C2B44F1B8E2D38007983DB;
+			productRefGroup = A9C2B4591B8E2D38007983DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9C2B4571B8E2D38007983DB /* Pirate Fleet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9C2B4561B8E2D38007983DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9C2B4661B8E2D38007983DB /* LaunchScreen.storyboard in Resources */,
+				A9C2B4901B8E2D79007983DB /* Water.pdf in Resources */,
+				A9C2B4631B8E2D38007983DB /* Assets.xcassets in Resources */,
+				A9C2B48E1B8E2D79007983DB /* Mine.pdf in Resources */,
+				A9C2B48B1B8E2D79007983DB /* ShipEndDown.pdf in Resources */,
+				A9C2B48D1B8E2D79007983DB /* ShipBodyHorz.pdf in Resources */,
+				A9C2B48F1B8E2D79007983DB /* ShipEndUp.pdf in Resources */,
+				A9C2B4881B8E2D79007983DB /* Miss.pdf in Resources */,
+				A9C2B48A1B8E2D79007983DB /* ShipEndLeft.pdf in Resources */,
+				A9C2B4891B8E2D79007983DB /* ShipEndRight.pdf in Resources */,
+				A9C2B4871B8E2D79007983DB /* Hit.pdf in Resources */,
+				A9C2B48C1B8E2D79007983DB /* ShipBodyVert.pdf in Resources */,
+				A9601EC51B8E8B8800F9D044 /* MineHit.pdf in Resources */,
+				A9C2B4611B8E2D38007983DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9C2B4541B8E2D38007983DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9EAC0BB1B8FD833008AD77B /* Player.swift in Sources */,
+				A9DDAF261B9629AD00D64CD7 /* Functions.swift in Sources */,
+				A914B9721B94E260005C7E2F /* Computer.swift in Sources */,
+				A9C2B47F1B8E2D79007983DB /* GridView.swift in Sources */,
+				A932F7F21B8E6E29009E89A9 /* Protocols-Extensions.swift in Sources */,
+				A9D83B5F1B97881C00EBA850 /* ControlCenter.swift in Sources */,
+				A9C2B4821B8E2D79007983DB /* GridViewController.swift in Sources */,
+				A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */,
+				A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */,
+				A9A5675B1B97A30B00F91B12 /* Protocols.swift in Sources */,
+				A9EAC0BD1B8FDE98008AD77B /* Human.swift in Sources */,
+				A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */,
+				A9C2B4831B8E2D79007983DB /* PirateFleetViewController.swift in Sources */,
+				A9C2B4841B8E2D79007983DB /* Settings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A9C2B45F1B8E2D38007983DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9C2B4601B8E2D38007983DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9C2B4651B8E2D38007983DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A9C2B4681B8E2D38007983DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9C2B4691B8E2D38007983DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9C2B46B1B8E2D38007983DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pirate Fleet/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.udacity.Pirate-Fleet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A9C2B46C1B8E2D38007983DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pirate Fleet/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.udacity.Pirate-Fleet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9C2B4531B8E2D38007983DB /* Build configuration list for PBXProject "Pirate Fleet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9C2B4681B8E2D38007983DB /* Debug */,
+				A9C2B4691B8E2D38007983DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9C2B46A1B8E2D38007983DB /* Build configuration list for PBXNativeTarget "Pirate Fleet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9C2B46B1B8E2D38007983DB /* Debug */,
+				A9C2B46C1B8E2D38007983DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9C2B4501B8E2D38007983DB /* Project object */;
+}
