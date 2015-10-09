@@ -58,7 +58,7 @@ class HumanObject: Player, Human {
     
     func calculateScore() -> String {
 
-        let gameStats = GameStats(numberOfHitsOnEnemy: 0, numberOfMissesByHuman: 0, enemyShipsRemaining: 0, humanShipsSunk: 0, sinkBonus: 0, shipBouns: 0, guessPenalty: 0)
+        let gameStats = GameStats(numberOfHitsOnEnemy: 0, numberOfMissesByHuman: 0, enemyShipsRemaining: 0, humanShipsSunk: 0, sinkBonus: 0, shipBonus: 0, guessPenalty: 0)
         
         return "Final Score: \(controlCenter.calculateFinalScore(gameStats))"
     }
