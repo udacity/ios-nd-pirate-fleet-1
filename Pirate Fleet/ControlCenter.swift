@@ -17,11 +17,6 @@ struct Ship {
     let isVertical: Bool
 }
 
-struct Mine: _Mine_ {
-    var location: GridLocation
-    var explosionText: String
-}
-
 class ControlCenter {
     
     func addShipsAndMines(human: Human) {
