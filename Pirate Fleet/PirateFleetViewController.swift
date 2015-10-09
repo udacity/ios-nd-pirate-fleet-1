@@ -162,7 +162,7 @@ extension PirateFleetViewController: PlayerDelegate {
                 endGameWithAlert(Settings.Messages.GameOver, withMessage: Settings.Messages.Lose, withActionMessage: Settings.Messages.Reset)
             }
             
-            print(human.calculateScore())
+            print(human.calculateScore(computer))
         }
     }
     

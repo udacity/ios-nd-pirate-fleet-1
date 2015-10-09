@@ -26,6 +26,8 @@ class Player {
     var playerType: PlayerType
     var skipNextTurn = false
     var lastHitMine: _Mine_? = nil
+    var numberOfMisses: Int = 0
+    var numberOfHits: Int = 0
     var performedMoves = Set<GridLocation>()
     var gridViewController: GridViewController
     var gridView: GridView {
@@ -72,14 +74,19 @@ class Player {
         if let mine = player.grid[atLocation.x][atLocation.y].mine {
             skipNextTurn = true
             lastHitMine = mine
+            numberOfMisses++
             player.gridView.markMineHit(mine)
         }
         
         // hit a ship?
         if !player.gridViewController.fireCannonAtLocation(atLocation) {
+            numberOfMisses++
             player.gridView.markMissed(atLocation)
-        }
-        
+        } else {
+            // we hit something!
+            numberOfHits++
+        }        
+                
         if let playerDelegate = playerDelegate {
             
             if player.gridViewController.checkSink(atLocation) {

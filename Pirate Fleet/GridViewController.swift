@@ -180,6 +180,16 @@ extension GridViewController {
         }
         return true
     }
+    
+    func numberSunk() -> Int {
+        var numberSunk = 0
+        for ship in metaShips {
+            if ship.sunk == true {
+                numberSunk++
+            }
+        }
+        return numberSunk
+    }
 }
 
 // MARK: - Adding Ship Checks
