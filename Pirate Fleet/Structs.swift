@@ -33,7 +33,7 @@ struct GameStats {
     let enemyShipsRemaining: Int
     let humanShipsSunk: Int
     let sinkBonus: Int
-    let shipBouns: Int
+    let shipBonus: Int
     let guessPenalty: Int
 }
 

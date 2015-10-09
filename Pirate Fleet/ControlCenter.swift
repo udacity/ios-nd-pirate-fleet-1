@@ -53,7 +53,7 @@ class ControlCenter {
         var finalScore: Int
         
         let sinkBonus = (5 - gameStats.enemyShipsRemaining) * gameStats.sinkBonus
-        let shipBonus = (5 - gameStats.humanShipsSunk) * gameStats.shipBouns
+        let shipBonus = (5 - gameStats.humanShipsSunk) * gameStats.shipBonus
         let guessPenalty = (gameStats.numberOfHitsOnEnemy + gameStats.numberOfHitsOnEnemy) * gameStats.guessPenalty
         
         finalScore = sinkBonus + shipBonus + guessPenalty
