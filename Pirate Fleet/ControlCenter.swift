@@ -18,8 +18,8 @@ struct Ship {
 }
 
 struct Mine: _Mine_ {
-    var location: GridLocation
-    var explosionText: String
+    let location: GridLocation
+    let explosionText: String
 }
 
 class ControlCenter {
