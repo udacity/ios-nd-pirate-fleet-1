@@ -7,6 +7,6 @@
 //
 
 protocol _Mine_ {
-    var location: GridLocation {get set}
-    var explosionText: String {get set}
+    var location: GridLocation {get}
+    var explosionText: String {get}
 }
