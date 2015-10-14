@@ -58,7 +58,7 @@ class HumanObject: Player, Human {
     
     func calculateScore(computer: Computer) -> String {
 
-        let gameStats = GameStats(numberOfHitsOnEnemy: numberOfHits, numberOfMissesByHuman: numberOfMisses, enemyShipsRemaining: 5 - computer.gridViewController.numberSunk(), humanShipsSunk: gridViewController.numberSunk(), sinkBonus: -100, shipBonus: 100, guessPenalty: 10)
+        let gameStats = GameStats(numberOfHitsOnEnemy: numberOfHits, numberOfMissesByHuman: numberOfMisses, enemyShipsRemaining: 5 - computer.gridViewController.numberSunk(), humanShipsSunk: gridViewController.numberSunk(), sinkBonus: 100, shipBonus: 100, guessPenalty: 10)
         
         return "Final Score: \(controlCenter.calculateFinalScore(gameStats))"
     }
