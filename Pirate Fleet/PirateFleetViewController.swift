@@ -105,10 +105,14 @@ class PirateFleetViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func pauseGameWithMineAlert(explosionText: String, affectedPlayerType: PlayerType) {
+    func pauseGameWithMineAlert(explosionText: String, affectedPlayerType: PlayerType, humanAffected: Bool = false) {
         let alertText = (affectedPlayerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
         let alert = UIAlertController(title: explosionText + "!", message: alertText, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: Settings.Messages.DismissMineAlert, style: .Default, handler: nil)
+        let dismissAction = UIAlertAction(title: Settings.Messages.DismissMineAlert, style: .Default) { (action) -> Void in
+            if humanAffected {
+                self.human.skipTurn()
+            }
+        }
         alert.addAction(dismissAction)
         self.presentViewController(alert, animated: true, completion: nil)         
     }
@@ -142,8 +146,7 @@ extension PirateFleetViewController: PlayerDelegate {
                 // did human hit a mine?
                 if let mine = human.lastHitMine where human.skipNextTurn {
                     // yes, then invokes playerDidMove again to "skip"
-                    pauseGameWithMineAlert(mine.explosionText, affectedPlayerType: player.playerType)
-                    human.skipTurn()
+                    pauseGameWithMineAlert(mine.explosionText, affectedPlayerType: player.playerType, humanAffected: true)
                 }
             }            
         case .Computer:
