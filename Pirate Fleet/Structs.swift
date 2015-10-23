@@ -21,8 +21,9 @@ struct GridCell {
     let location: GridLocation
     let view: UIView
     var containsObject: Bool
-    var mine: _Mine_?
-    var metaShip: MetaShip?
+    var mine: Mine?
+    var ship: Ship?
+    var seamonster: Seamonster?
 }
 
 // MARK: - GameStats
@@ -37,19 +38,8 @@ struct GameStats {
     let guessPenalty: Int
 }
 
-// MARK: - MetaShip
+// MARK: - HitTracker
 
-class MetaShip {
-    var cells: [GridLocation] = []
+class HitTracker {
     var cellsHit: [GridLocation: Bool] = [:]
-    var sunk: Bool {
-        get {
-            for (_, hit) in cellsHit {
-                if hit == false {
-                    return false
-                }
-            }            
-            return true
-        }
-    }
 }

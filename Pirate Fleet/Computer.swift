@@ -49,8 +49,11 @@ class Computer: Player {
         }
         
         if let mine = player.grid[move.x][move.y].mine {
-            skipNextTurn = true
-            lastHitMine = mine
+            lastHitPenaltyCell = mine
+        }
+        
+        if let seamonster = player.grid[move.x][move.y].seamonster {
+            lastHitPenaltyCell = seamonster
         }
         
         if player.gridViewController.fireCannonAtLocation(move) {
@@ -67,7 +70,7 @@ class Computer: Player {
                 playerDelegate.playerDidWin(self)
             }
             playerDelegate.playerDidMove(self)
-        }        
+        }
     }
     
     // MARK: Adding New Moves

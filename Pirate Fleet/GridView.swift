@@ -50,7 +50,7 @@ class GridView: UIView {
         super.init(frame: frame)
         
         grid = [[GridCell]]()
-
+        
         let center = self.center
         let sideLength = getSideLength()
         self.frame = CGRect(x: 0, y: 0, width: sideLength * CGFloat(Settings.DefaultGridSize.width), height: sideLength * CGFloat(Settings.DefaultGridSize.height))
@@ -65,7 +65,7 @@ class GridView: UIView {
                 
                 addBackgroundToView(view, backgroundImage: cellBackgroundImage)
                 
-                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, metaShip: nil)
+                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, ship: nil, seamonster: nil)
                 cells.append(gridCell)
                 self.addSubview(view)
             }
@@ -82,8 +82,9 @@ class GridView: UIView {
                 }
                 grid[x][y].containsObject = false
                 grid[x][y].mine = nil
-                if let _ = grid[x][y].metaShip {
-                    grid[x][y].metaShip = nil
+                grid[x][y].seamonster = nil
+                if let _ = grid[x][y].ship {
+                    grid[x][y].ship = nil
                 }
                 
                 addBackgroundToView(grid[x][y].view, backgroundImage: cellBackgroundImage)
@@ -156,32 +157,65 @@ extension GridView {
         addImageAtLocation(location, image: Settings.Images.Hit)
     }
     
-    func markMineHit(mine: _Mine_) {
+    func markMineHit(mine: Mine) {
         addImageAtLocation(mine.location, image: Settings.Images.MineHit)
     }
     
-    func markMine(mine: _Mine_, hidden: Bool = false) {
+    func markMine(mine: Mine, hidden: Bool = false) {
         addImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: hidden)
     }
     
-    func markShipPiece(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
+    func markSeamonsterHit(seamonster: Seamonster) {
+        addImageAtLocation(seamonster.location, image: Settings.Images.SeamonsterHit)
+    }
+    
+    func markSeamonster(seamonster: Seamonster, hidden: Bool = false) {
+        addImageAtLocation(seamonster.location, image: Settings.Images.Seamonster, hidden: hidden)
+    }
+    
+    func markShipPiece(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType, isWooden: Bool) {
         
         // if placing a computer piece, then hide it by default
         let hidden = (playerType == .Computer) ? true : false
         
+        
         switch orientation {
         case .EndUp:
-            addImageAtLocation(location, image: Settings.Images.ShipEndUp, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipEndUp, hidden: hidden)
+            }
         case .EndDown:
-            addImageAtLocation(location, image: Settings.Images.ShipEndDown, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipEndDown, hidden: hidden)
+            }
         case .EndLeft:
-            addImageAtLocation(location, image: Settings.Images.ShipEndLeft, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipEndLeft, hidden: hidden)
+            }
         case .EndRight:
-            addImageAtLocation(location, image: Settings.Images.ShipEndRight, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipEndRight, hidden: hidden)
+            }
         case .BodyHorz:
-            addImageAtLocation(location, image: Settings.Images.ShipBodyHorz, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipBodyHorz, hidden: hidden)
+            }
         case .BodyVert:
-            addImageAtLocation(location, image: Settings.Images.ShipBodyVert, hidden: hidden)
+            if isWooden {
+                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
+            } else {
+                addImageAtLocation(location, image: Settings.Images.ShipBodyVert, hidden: hidden)
+            }
         }
     }
     
