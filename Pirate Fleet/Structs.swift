@@ -23,7 +23,7 @@ struct GridCell {
     var containsObject: Bool
     var mine: Mine?
     var ship: Ship?
-    var seamonster: Seamonster?
+    var seamonster: SeaMonster?
 }
 
 // MARK: - GameStats

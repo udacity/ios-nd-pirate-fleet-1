@@ -6,12 +6,6 @@
 //  Copyright © 2015 Udacity. All rights reserved.
 //
 
-protocol PenaltyCell {
-    var location: GridLocation {get}
-    var penaltyText: String {get}
-    var guaranteesHit: Bool {get}
-}
-
 struct GridLocation {
     let x: Int
     let y: Int
@@ -58,6 +52,12 @@ struct Ship {
     }
 }
 
+protocol PenaltyCell {
+    var location: GridLocation {get}
+    var penaltyText: String {get}
+    var guaranteesHit: Bool {get}
+}
+
 struct Mine: PenaltyCell {
     let location: GridLocation
     let penaltyText: String
@@ -65,7 +65,7 @@ struct Mine: PenaltyCell {
     
     init(location: GridLocation) {
         self.location = location
-        self.penaltyText = "Default explosion text"
+        self.penaltyText = "Boom!"
         self.guaranteesHit = false
     }
     
@@ -82,20 +82,20 @@ struct Mine: PenaltyCell {
     }
 }
 
-struct Seamonster: PenaltyCell {
+struct SeaMonster: PenaltyCell {
     let location: GridLocation
     let penaltyText: String
     let guaranteesHit: Bool
     
     init(location: GridLocation) {
         self.location = location
-        self.penaltyText = "Default explosion text"
+        self.penaltyText = "Yikes!"
         self.guaranteesHit = true
     }
     
-    init(location: GridLocation, explosionText: String) {
+    init(location: GridLocation, penaltyText: String) {
         self.location = location
-        self.penaltyText = explosionText
+        self.penaltyText = penaltyText
         self.guaranteesHit = true
     }
 }
@@ -125,10 +125,10 @@ class ControlCenter {
         let mine2 = Mine(location: GridLocation(x: 3, y: 3), penaltyText: "Ka-Bang!")
         human.addMineToGrid(mine2)
         
-        let seamonster1 = Seamonster(location: GridLocation(x: 5, y: 6))
+        let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6), penaltyText: "Chomp!")
         human.addSeamonsterToGrid(seamonster1)
         
-        let seamonster2 = Seamonster(location: GridLocation(x: 2, y: 2))
+        let seamonster2 = SeaMonster(location: GridLocation(x: 2, y: 2))
         human.addSeamonsterToGrid(seamonster2)
     }
     

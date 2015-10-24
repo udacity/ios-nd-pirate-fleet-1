@@ -121,7 +121,7 @@ class GridViewController {
     
     // MARK: Add Seamonster
     
-    func addSeamonster(seamonster: Seamonster, playerType: PlayerType = .Human) -> Bool {
+    func addSeamonster(seamonster: SeaMonster, playerType: PlayerType = .Human) -> Bool {
         
         let x = seamonster.location.x, y = seamonster.location.y
         

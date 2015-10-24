@@ -165,11 +165,11 @@ extension GridView {
         addImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: hidden)
     }
     
-    func markSeamonsterHit(seamonster: Seamonster) {
+    func markSeamonsterHit(seamonster: SeaMonster) {
         addImageAtLocation(seamonster.location, image: Settings.Images.SeamonsterHit)
     }
     
-    func markSeamonster(seamonster: Seamonster, hidden: Bool = false) {
+    func markSeamonster(seamonster: SeaMonster, hidden: Bool = false) {
         addImageAtLocation(seamonster.location, image: Settings.Images.Seamonster, hidden: hidden)
     }
     

@@ -14,7 +14,7 @@ import UIKit
 protocol Human {
     func addShipToGrid(ship: Ship)
     func addMineToGrid(mine: Mine)
-    func addSeamonsterToGrid(seamonster: Seamonster)
+    func addSeamonsterToGrid(seamonster: SeaMonster)
 }
 
 // MARK: - HumanObject
@@ -43,7 +43,7 @@ class HumanObject: Player, Human {
         gridViewController.addMine(mine)
     }
     
-    func addSeamonsterToGrid(seamonster: Seamonster) {
+    func addSeamonsterToGrid(seamonster: SeaMonster) {
         gridViewController.addSeamonster(seamonster)
     }
     
