@@ -69,7 +69,7 @@ struct Settings {
         static var Mine = "Mine"
         static var MineHit = "MineHit"
         
-        static var Seamonster = "Seamonster"
-        static var SeamonsterHit = "SeamonsterHit"
+        static var SeaMonster = "Seamonster"
+        static var SeaMonsterHit = "SeamonsterHit"
     }
 }

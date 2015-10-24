@@ -62,11 +62,11 @@ class PirateFleetViewController: UIViewController {
     func setupHuman() -> (Int, Int) {
         if human != nil {
             human.reset()
-            human.addPlayerShipsMinesAndMonsters()
+            human.addPlayerShipsMinesMonsters()
         } else {
             human = HumanObject(frame: CGRect(x: self.view.frame.size.width / 2 - 120, y: self.view.frame.size.height - 256, width: 240, height: 240))
             human.playerDelegate = self
-            human.addPlayerShipsMinesAndMonsters()
+            human.addPlayerShipsMinesMonsters()
             self.view.addSubview(human.gridView)
         }
         return (human.numberOfMines(), human.numberOfSeamonsters())
@@ -75,12 +75,12 @@ class PirateFleetViewController: UIViewController {
     func setupComputer(numberOfMines numberOfMines: Int, numberOfSeamonsters: Int) {
         if computer != nil {
             computer.reset()
-            computer.addPlayerShipsMinesAndMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
+            computer.addPlayerShipsMinesMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
         } else {
             computer = Computer(frame: CGRect(x: self.view.frame.size.width / 2 - 180, y: self.view.frame.size.height / 2 - 300, width: 360, height: 360))
             computer.playerDelegate = self
             computer.gridDelegate = self
-            computer.addPlayerShipsMinesAndMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
+            computer.addPlayerShipsMinesMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
             self.view.addSubview(computer.gridView)
         }
     }

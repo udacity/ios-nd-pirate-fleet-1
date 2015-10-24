@@ -65,8 +65,7 @@ class GridViewController {
         
         for x in start.x...end.x {
             for y in start.y...end.y {
-                
-                
+                                
                 ship.hitTracker.cellsHit[gridView.grid[x][y].location] = false
                 
                 gridView.grid[x][y].containsObject = true
@@ -75,9 +74,9 @@ class GridViewController {
                 // place "front-end" of ship
                 if x == start.x && y == start.y {
                     if ship.isVertical {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType, isWooden: ship.isWooden)
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType, isWooden: ship.isWooden)
                     } else {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType, isWooden: ship.isWooden)
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType, isWooden: ship.isWooden)
                     }
                     continue
                 }
@@ -85,15 +84,15 @@ class GridViewController {
                 // place "back-end" of ship
                 if x == end.x && y == end.y {
                     if ship.isVertical {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType, isWooden: ship.isWooden)
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType, isWooden: ship.isWooden)
                     } else {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType, isWooden: ship.isWooden)
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType, isWooden: ship.isWooden)
                     }
                     continue
                 }
                 
                 // place middle piece of ship
-                gridView.markShipPiece(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType, isWooden: ship.isWooden)
+                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType, isWooden: ship.isWooden)
             }
         }
         
@@ -114,7 +113,7 @@ class GridViewController {
         
         gridView.grid[x][y].containsObject = true
         gridView.grid[x][y].mine = mine
-        gridView.markMine(mine, hidden: ((playerType == .Computer) ? true : false))
+        gridView.markImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: ((playerType == .Computer) ? true : false))
         mineCount++
         return true
     }
@@ -131,7 +130,7 @@ class GridViewController {
         
         gridView.grid[x][y].containsObject = true
         gridView.grid[x][y].seamonster = seamonster
-        gridView.markSeamonster(seamonster, hidden: ((playerType == .Computer) ? true : false))
+        gridView.markImageAtLocation(seamonster.location, image: Settings.Images.SeaMonster, hidden: ((playerType == .Computer) ? true : false))
         seamonsterCount++
         return true
     }
@@ -148,11 +147,11 @@ class GridViewController {
         
         gridView.grid[x][y].ship?.hitTracker.cellsHit[location] = true
         if let mine = gridView.grid[x][y].mine {
-            gridView.markMineHit(mine)
+            gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
         } else if let seamonster = gridView.grid[x][y].seamonster {
-            gridView.markSeamonsterHit(seamonster)
+            gridView.markImageAtLocation(seamonster.location, image: Settings.Images.SeaMonsterHit)
         } else {
-            gridView.markHit(location)
+            gridView.markImageAtLocation(location, image: Settings.Images.Hit)
         }
         return true
     }

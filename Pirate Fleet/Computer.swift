@@ -60,7 +60,7 @@ class Computer: Player {
             shipHitTrace.append(move)
             if Settings.ComputerDifficulty == .Advanced && lastHitPenaltyCell == nil { addEducatedMoves() }
         } else {
-            player.gridViewController.gridView.markMissed(move)
+            player.gridViewController.gridView.markImageAtLocation(move, image: Settings.Images.Miss)
         }
         
         performedMoves.insert(GridLocation(x: move.x, y: move.y))
