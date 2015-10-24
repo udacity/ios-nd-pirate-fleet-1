@@ -236,7 +236,6 @@ class Player {
                 location = RandomGridLocation()
                 mine = Mine(location: location, penaltyText: Settings.DefaultMineText)
             }
-            print("MINE at \(mine.location)")
         }
         
         // random seamonster placement
@@ -247,7 +246,6 @@ class Player {
                 location = RandomGridLocation()
                 seaMonster = SeaMonster(location: location, penaltyText: Settings.DefaultMonsterText)
             }
-            print("MONSTER at \(seaMonster.location)")
         }
     }
 }
