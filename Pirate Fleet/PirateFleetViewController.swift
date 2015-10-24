@@ -39,13 +39,13 @@ class PirateFleetViewController: UIViewController {
     func initializeGame() {
         
         // initialize human player first
-        let penaltyItems = setupPlayer()
+        let penaltyItems = setupHuman()
         
         // computer must match the number of penalty items added by human
-        setupComputer(penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
+        setupComputer(numberOfMines: penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
         
         // determine if the proper amount of ships/mines/monsters given
-        let readyState = checkReadyToPlay(penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
+        let readyState = checkReadyToPlay(numberOfMines: penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
         
         // are we ready to play?
         switch(readyState) {
@@ -55,11 +55,11 @@ class PirateFleetViewController: UIViewController {
         case .ShipsMonstersNotReady, .ShipsMinesNotReady, .ShipsMinesMonstersNotReady, .ShipsNotReady, .Invalid:
             readyToPlay = false
             gameOver = true
-            createAlertWithCompletion(Settings.Messages.UnableToStartTitle, message: readyState.rawValue, completionHandler: nil)
+            createAlertWithTitle(Settings.Messages.UnableToStartTitle, message: readyState.rawValue, completionHandler: nil)
         }
     }
     
-    func setupPlayer() -> (Int, Int) {
+    func setupHuman() -> (Int, Int) {
         if human != nil {
             human.reset()
             human.addPlayerShipsMinesAndMonsters()
@@ -72,7 +72,7 @@ class PirateFleetViewController: UIViewController {
         return (human.numberOfMines(), human.numberOfSeamonsters())
     }
     
-    func setupComputer(numberOfMines: Int, numberOfSeamonsters: Int) {
+    func setupComputer(numberOfMines numberOfMines: Int, numberOfSeamonsters: Int) {
         if computer != nil {
             computer.reset()
             computer.addPlayerShipsMinesAndMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
@@ -87,7 +87,7 @@ class PirateFleetViewController: UIViewController {
     
     // MARK: Check If Ready To Play
 
-    func checkReadyToPlay(numberOfMines: Int, numberOfSeamonsters: Int) -> ReadyState {
+    func checkReadyToPlay(numberOfMines numberOfMines: Int, numberOfSeamonsters: Int) -> ReadyState {
         switch (numberOfMines, numberOfSeamonsters) {
         case (0, 0):
             return (human.readyToPlay(checkMines: false, checkMonsters: false) && computer.readyToPlay(checkMines: false, checkMonsters: false)) ? .ReadyToPlay : .ShipsNotReady
@@ -104,7 +104,7 @@ class PirateFleetViewController: UIViewController {
     
     // MARK: Alert
     
-    func createAlertWithCompletion(title: String, message: String, actionMessage: String? = nil, completionHandler: ((UIAlertAction) -> Void)?) {
+    func createAlertWithTitle(title: String, message: String, actionMessage: String? = nil, completionHandler: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         if let actionMessage = actionMessage {
             let action = UIAlertAction(title: actionMessage, style: .Default, handler: completionHandler)
@@ -113,21 +113,9 @@ class PirateFleetViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func pauseGameWithMineAlert(explosionText: String, attackingPlayer: Player, attackedPlayer: Player) {
-        let alertText = (attackingPlayer.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
-        let alert = UIAlertController(title: explosionText + "!", message: alertText, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: Settings.Messages.DismissAction, style: .Default) { (action) -> Void in
-
-            attackingPlayer.lastHitPenaltyCell = nil
-            
-            if attackingPlayer.playerType == .Human {
-                self.processNextTurnForHuman()
-            } else {
-                self.processNextTurnForComputer()
-            }
-        }
-        alert.addAction(dismissAction)
-        self.presentViewController(alert, animated: true, completion: nil)         
+    func dismissPenaltyAlert(player: Player) {
+        player.lastHitPenaltyCell = nil
+        nextMove(player)
     }
 }
 
@@ -147,39 +135,7 @@ extension PirateFleetViewController: GridViewDelegate {
 
 extension PirateFleetViewController: PlayerDelegate {
     
-    func processNextTurnForHuman() {
-        if human.availableMoves.isEmpty {
-            computer.availableMoves.append(.NormalMove)
-            if computer.numberOfMines() != 0 {
-                computer.attackMine(human)
-            } else {
-                computer.attack(human)
-            }
-        } else {
-            let nextMove: MoveType = human.availableMoves.last!
-            if nextMove == .GuaranteedHit {
-                human.attackPlayerWithGuaranteedHit(computer)
-            }
-        }
-    }
-    
-    func processNextTurnForComputer() {
-        
-        if computer.availableMoves.isEmpty {
-            human.availableMoves.append(.NormalMove)
-        } else {
-            let nextMove: MoveType = computer.availableMoves.last!
-            if nextMove == .GuaranteedHit {
-                computer.attackPlayerWithGuaranteedHit(human)
-            } else {
-                if computer.numberOfMines() != 0 {
-                    computer.attackMine(human)
-                } else {
-                    computer.attack(human)
-                }
-            }
-        }
-    }
+    // MARK: PlayerDelegate
     
     func playerDidMove(player: Player) {
         
@@ -189,61 +145,54 @@ extension PirateFleetViewController: PlayerDelegate {
         // which player was attacked?
         let attackedPlayer = (player.playerType == .Human) ? computer : human
         
-        // alert of any penalties incurred during the move
-        if let penaltyCell = player.lastHitPenaltyCell {            
+        // if any penalties incurred during the move, show alert
+        if let penaltyCell = player.lastHitPenaltyCell {
+            
+            // mine penalty
             if let mine = penaltyCell as? Mine {
                 attackedPlayer.availableMoves.append(.NormalMove)
                 
                 let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
 
-                createAlertWithCompletion(mine.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
-                    
-                    player.lastHitPenaltyCell = nil
-
-                    if player.playerType == .Human {
-                        self.processNextTurnForHuman()
-                    } else {
-                        self.processNextTurnForComputer()
-                    }
+                createAlertWithTitle(mine.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
+                    self.dismissPenaltyAlert(player)
                 })
-            } else if let seamonster = penaltyCell as? SeaMonster {
+            }
+                
+            // sea monster penalty
+            else if let seamonster = penaltyCell as? SeaMonster {
                 attackedPlayer.availableMoves.append(.GuaranteedHit)
                 
                 let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMonster : Settings.Messages.ComputerHitMonster
                 
-                createAlertWithCompletion(seamonster.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
-                    
-                    player.lastHitPenaltyCell = nil
-                    
-                    if player.playerType == .Human {
-                        self.processNextTurnForHuman()
-                    } else {
-                        self.processNextTurnForComputer()
-                    }
+                createAlertWithTitle(seamonster.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
+                    self.dismissPenaltyAlert(player)
                 })
             }
         } else {
-            if player.playerType == .Human {
-                processNextTurnForHuman()
-            } else {
-                processNextTurnForComputer()
-            }
+            nextMove(player)
         }        
     }
     
     func playerDidWin(player: Player) {
+        
         if gameOver == false {
             switch player.playerType {
+                
+            // human won!
             case .Human:
-                createAlertWithCompletion(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverWin, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
+                createAlertWithTitle(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverWin, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
                     self.initializeGame()
                 })
+                
+            // computer won!
             case .Computer:
-                createAlertWithCompletion(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverLose, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
+                createAlertWithTitle(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverLose, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
                     self.initializeGame()
                 })
             }
             
+            // print final score
             print(human.calculateScore(computer))
         }
     }
@@ -251,6 +200,37 @@ extension PirateFleetViewController: PlayerDelegate {
     func playerDidSinkAtLocation(player: Player, location: GridLocation) {
         if player.playerType == .Human {
             computer.revealShipAtLocation(location)
+        }
+    }
+    
+    // MARK: Take Next Move
+    
+    func nextMove(player: Player) {
+        (player.playerType == .Human) ? self.nextHumanMove() : self.nextComputerMove()
+    }
+    
+    func nextHumanMove() {
+        if human.availableMoves.isEmpty {
+            computer.availableMoves.append(.NormalMove)
+            computer.attack(human)
+        } else {
+            let nextMove: MoveType = human.availableMoves.last!
+            if nextMove == .GuaranteedHit {
+                human.attackPlayerWithGuaranteedHit(computer)
+            }
+        }
+    }
+    
+    func nextComputerMove() {
+        if computer.availableMoves.isEmpty {
+            human.availableMoves.append(.NormalMove)
+        } else {
+            let nextMove: MoveType = computer.availableMoves.last!
+            if nextMove == .GuaranteedHit {
+                computer.attackPlayerWithGuaranteedHit(human)
+            } else {
+                computer.attack(human)
+            }
         }
     }
 }

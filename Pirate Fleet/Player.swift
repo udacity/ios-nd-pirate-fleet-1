@@ -23,14 +23,11 @@ class Player {
     
     var playerDelegate: PlayerDelegate?
     var playerType: PlayerType
-
     var lastHitPenaltyCell: PenaltyCell? = nil
-
     var numberOfMisses: Int = 0
     var numberOfHits: Int = 0
     
     var performedMoves = Set<GridLocation>()
-    
     var gridViewController: GridViewController
     var gridView: GridView {
         get {
@@ -55,6 +52,7 @@ class Player {
         gridViewController.reset()
         numberOfMisses = 0
         numberOfHits = 0
+        lastHitPenaltyCell = nil
         performedMoves.removeAll(keepCapacity: true)
         availableMoves.append(.NormalMove)
     }

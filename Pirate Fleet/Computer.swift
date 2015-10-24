@@ -58,7 +58,7 @@ class Computer: Player {
         
         if player.gridViewController.fireCannonAtLocation(move) {
             shipHitTrace.append(move)
-            if Settings.ComputerDifficulty == .Advanced { addEducatedMoves() }
+            if Settings.ComputerDifficulty == .Advanced && lastHitPenaltyCell == nil { addEducatedMoves() }
         } else {
             player.gridViewController.gridView.markMissed(move)
         }
