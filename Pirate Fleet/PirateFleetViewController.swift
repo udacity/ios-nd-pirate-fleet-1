@@ -142,18 +142,14 @@ extension PirateFleetViewController: PlayerDelegate {
         let attackedPlayer = (player.playerType == .Human) ? computer : human
         
         // if any penalties incurred during the move, show alert
-        if let penaltyCell = player.lastHitPenaltyCell {
+        if let mine = player.lastHitPenaltyCell {            
+            attackedPlayer.availableMoves.append(.NormalMove)
             
-            // mine penalty
-            if let mine = penaltyCell as? Mine {
-                attackedPlayer.availableMoves.append(.NormalMove)
-                
-                let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
+            let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
 
-                createAlertWithTitle(mine.explosionText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
-                    self.dismissPenaltyAlert(player)
-                })
-            }
+            createAlertWithTitle(mine.explosionText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
+                self.dismissPenaltyAlert(player)
+            })
         } else {
             nextMove(player)
         }        

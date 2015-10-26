@@ -8,6 +8,14 @@
 
 import UIKit
 
+// MARK: - PlayerMine
+// Used to give students a clean interface 😉!
+
+struct PlayerMine: _Mine_ {
+    let location: GridLocation
+    let explosionText: String
+}
+
 // MARK: MoveType
 
 enum MoveType {
@@ -213,10 +221,10 @@ class Player {
         // random mine placement
         for _ in 0..<numberOfMines {
             var location = RandomGridLocation()
-            var mine = Mine(location: location, explosionText: Settings.DefaultMineText)
+            var mine = PlayerMine(location: location, explosionText: Settings.DefaultMineText)
             while !gridViewController.addMine(mine, playerType: .Computer) {
                 location = RandomGridLocation()
-                mine = Mine(location: location, explosionText: Settings.DefaultMineText)
+                mine = PlayerMine(location: location, explosionText: Settings.DefaultMineText)
             }
         }
     }

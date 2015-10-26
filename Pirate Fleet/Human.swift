@@ -13,7 +13,7 @@ import UIKit
 
 protocol Human {
     func addShipToGrid(ship: Ship)
-    func addMineToGrid(mine: Mine)
+    func addMineToGrid(mine: _Mine_)
 }
 
 // MARK: - HumanObject
@@ -38,12 +38,12 @@ class HumanObject: Player, Human {
         gridViewController.addShip(ship)
     }
     
-    func addMineToGrid(mine: Mine) {
+    func addMineToGrid(mine: _Mine_) {
         gridViewController.addMine(mine)
     }
     
     override func addPlayerShipsMines(numberOfMines: Int = 0) {
-        controlCenter.addPlayerShipsMines(self)
+        controlCenter.addShipsAndMines(self)
     }
     
     // MARK: Calculate Final Score

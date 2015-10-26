@@ -99,7 +99,7 @@ class GridViewController {
     
     // MARK: Add Mine
     
-    func addMine(mine: Mine, playerType: PlayerType = .Human) -> Bool {
+    func addMine(mine: _Mine_, playerType: PlayerType = .Human) -> Bool {
         
         let x = mine.location.x, y = mine.location.y
 
