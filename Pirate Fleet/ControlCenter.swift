@@ -11,6 +11,12 @@ struct GridLocation {
     let y: Int
 }
 
+struct Ship {
+    let length: Int
+    let location: GridLocation
+    let isVertical: Bool
+}
+
 struct Mine: _Mine_ {
     let location: GridLocation
     let explosionText: String

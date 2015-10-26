@@ -187,7 +187,7 @@ class Player {
     // MARK: Modify Grid
     
     func revealShipAtLocation(location: GridLocation) {
-        let connectedCells = grid[location.x][location.y].ship?.cells
+        let connectedCells = grid[location.x][location.y].metaShip?.cells
         gridView.revealLocations(connectedCells!)
     }
     

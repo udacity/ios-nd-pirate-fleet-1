@@ -15,7 +15,7 @@ class GridViewController {
     // MARK: Properties
     
     var gridView: GridView
-    var ships: [Ship] = []
+    var metaShips: [MetaShip] = []
     var shipCounts: [ShipSize:Int] = [
         .Small: 0,
         .Medium: 0,
@@ -32,7 +32,7 @@ class GridViewController {
     }
     
     func reset() {
-        ships.removeAll(keepCapacity: true)
+        metaShips.removeAll(keepCapacity: true)
         for shipSize in shipCounts.keys {
             shipCounts[shipSize] = 0
         }
@@ -60,41 +60,39 @@ class GridViewController {
         }
         
         let start = ship.location, end = ShipEndLocation(ship)
+        let metaShip = MetaShip()
         
         for x in start.x...end.x {
             for y in start.y...end.y {
-                                
-                ship.hitTracker.cellsHit[gridView.grid[x][y].location] = false
+                
+                metaShip.cells.append(gridView.grid[x][y].location)
+                metaShip.cellsHit[gridView.grid[x][y].location] = false
                 
                 gridView.grid[x][y].containsObject = true
-                gridView.grid[x][y].ship = ship
+                gridView.grid[x][y].metaShip = metaShip
                 
                 // place "front-end" of ship
                 if x == start.x && y == start.y {
                     if ship.isVertical {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType, isWooden: ship.isWooden)
-                    } else {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType, isWooden: ship.isWooden)
-                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType)                    }
                     continue
                 }
                 
                 // place "back-end" of ship
                 if x == end.x && y == end.y {
                     if ship.isVertical {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType, isWooden: ship.isWooden)
-                    } else {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType, isWooden: ship.isWooden)
-                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType)                    }
                     continue
                 }
                 
                 // place middle piece of ship
-                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType, isWooden: ship.isWooden)
+                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType)
             }
         }
         
-        ships.append(ship)
+        metaShips.append(metaShip)
         shipCounts[ShipSize(rawValue: ship.length)!]! += 1
         return true
     }
@@ -126,7 +124,7 @@ class GridViewController {
             return false
         }
         
-        gridView.grid[x][y].ship?.hitTracker.cellsHit[location] = true
+        gridView.grid[x][y].metaShip?.cellsHit[location] = true
         if let mine = gridView.grid[x][y].mine {
             gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
         } else {
@@ -163,7 +161,7 @@ extension GridViewController {
             return false
         }
         
-        if let ship = gridView.grid[location.x][location.y].ship {
+        if let ship = gridView.grid[location.x][location.y].metaShip {
             return ship.sunk
         } else {
             return false
@@ -171,7 +169,7 @@ extension GridViewController {
     }
     
     func checkForWin() -> Bool {
-        for ship in ships {
+        for ship in metaShips {
             if ship.sunk == false {
                 return false
             }
@@ -181,7 +179,7 @@ extension GridViewController {
     
     func numberSunk() -> Int {
         var numberSunk = 0
-        for ship in ships {
+        for ship in metaShips {
             if ship.sunk == true {
                 numberSunk++
             }

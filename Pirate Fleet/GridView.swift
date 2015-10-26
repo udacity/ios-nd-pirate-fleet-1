@@ -65,7 +65,7 @@ class GridView: UIView {
                 
                 addBackgroundToView(view, backgroundImage: cellBackgroundImage)
                 
-                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, ship: nil)
+                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, metaShip: nil)
                 cells.append(gridCell)
                 self.addSubview(view)
             }
@@ -84,8 +84,8 @@ class GridView: UIView {
                 }
                 grid[x][y].containsObject = false
                 grid[x][y].mine = nil
-                if let _ = grid[x][y].ship {
-                    grid[x][y].ship = nil
+                if let _ = grid[x][y].metaShip {
+                    grid[x][y].metaShip = nil
                 }
                 
                 addBackgroundToView(grid[x][y].view, backgroundImage: cellBackgroundImage)
@@ -158,48 +158,24 @@ extension GridView {
         addImageAtLocation(location, image: image, hidden: hidden)
     }
     
-    func markShipPieceAtLocation(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType, isWooden: Bool) {
+    func markShipPieceAtLocation(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
         
         // if placing a computer piece, then hide it by default
         let hidden = (playerType == .Computer) ? true : false
         
         switch orientation {
         case .EndUp:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipEndUp, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipEndUp, hidden: hidden)
         case .EndDown:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipEndDown, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipEndDown, hidden: hidden)
         case .EndLeft:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipEndLeft, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipEndLeft, hidden: hidden)
         case .EndRight:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipEndRight, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipEndRight, hidden: hidden)
         case .BodyHorz:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipBodyHorz, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipBodyHorz, hidden: hidden)
         case .BodyVert:
-            if isWooden {
-                addImageAtLocation(location, image: Settings.Images.WoodenShipPlaceholder, hidden: hidden)
-            } else {
-                addImageAtLocation(location, image: Settings.Images.ShipBodyVert, hidden: hidden)
-            }
+            addImageAtLocation(location, image: Settings.Images.ShipBodyVert, hidden: hidden)
         }
     }
     
