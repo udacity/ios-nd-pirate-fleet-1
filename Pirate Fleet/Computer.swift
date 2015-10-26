@@ -52,10 +52,6 @@ class Computer: Player {
             lastHitPenaltyCell = mine
         }
         
-        if let seamonster = player.grid[move.x][move.y].seamonster {
-            lastHitPenaltyCell = seamonster
-        }
-        
         if player.gridViewController.fireCannonAtLocation(move) {
             shipHitTrace.append(move)
             if Settings.ComputerDifficulty == .Advanced && lastHitPenaltyCell == nil { addEducatedMoves() }

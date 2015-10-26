@@ -65,7 +65,7 @@ class GridView: UIView {
                 
                 addBackgroundToView(view, backgroundImage: cellBackgroundImage)
                 
-                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, ship: nil, seamonster: nil)
+                let gridCell = GridCell(location: GridLocation(x: x, y: y), view: view, containsObject: false, mine: nil, ship: nil)
                 cells.append(gridCell)
                 self.addSubview(view)
             }
@@ -84,7 +84,6 @@ class GridView: UIView {
                 }
                 grid[x][y].containsObject = false
                 grid[x][y].mine = nil
-                grid[x][y].seamonster = nil
                 if let _ = grid[x][y].ship {
                     grid[x][y].ship = nil
                 }

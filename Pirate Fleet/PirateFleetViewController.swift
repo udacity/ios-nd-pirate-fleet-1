@@ -39,64 +39,60 @@ class PirateFleetViewController: UIViewController {
     func initializeGame() {
         
         // initialize human player first
-        let penaltyItems = setupHuman()
+        let numberOfMines = setupHuman()
         
         // computer must match the number of penalty items added by human
-        setupComputer(numberOfMines: penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
+        setupComputer(numberOfMines: numberOfMines)
         
-        // determine if the proper amount of ships/mines/monsters given
-        let readyState = checkReadyToPlay(numberOfMines: penaltyItems.0, numberOfSeamonsters: penaltyItems.1)
+        // determine if the proper amount of ships/mines given
+        let readyState = checkReadyToPlay(numberOfMines: numberOfMines)
         
         // are we ready to play?
         switch(readyState) {
         case .ReadyToPlay:
             readyToPlay = true
             gameOver = false
-        case .ShipsMonstersNotReady, .ShipsMinesNotReady, .ShipsMinesMonstersNotReady, .ShipsNotReady, .Invalid:
+        case .ShipsMinesNotReady, .ShipsNotReady, .Invalid:
             readyToPlay = false
             gameOver = true
             createAlertWithTitle(Settings.Messages.UnableToStartTitle, message: readyState.rawValue, completionHandler: nil)
         }
     }
     
-    func setupHuman() -> (Int, Int) {
+    func setupHuman() -> Int {
         if human != nil {
             human.reset()
-            human.addPlayerShipsMinesMonsters()
+            human.addPlayerShipsMines()
         } else {
             human = HumanObject(frame: CGRect(x: self.view.frame.size.width / 2 - 120, y: self.view.frame.size.height - 256, width: 240, height: 240))
             human.playerDelegate = self
-            human.addPlayerShipsMinesMonsters()
+            human.addPlayerShipsMines()
             self.view.addSubview(human.gridView)
         }
-        return (human.numberOfMines(), human.numberOfSeamonsters())
+        return human.numberOfMines()
     }
     
-    func setupComputer(numberOfMines numberOfMines: Int, numberOfSeamonsters: Int) {
+    func setupComputer(numberOfMines numberOfMines: Int) {
         if computer != nil {
             computer.reset()
-            computer.addPlayerShipsMinesMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
+            computer.addPlayerShipsMines(numberOfMines)
         } else {
             computer = Computer(frame: CGRect(x: self.view.frame.size.width / 2 - 180, y: self.view.frame.size.height / 2 - 300, width: 360, height: 360))
             computer.playerDelegate = self
             computer.gridDelegate = self
-            computer.addPlayerShipsMinesMonsters(numberOfMines, numberOfSeamonsters: numberOfSeamonsters)
+            computer.addPlayerShipsMines(numberOfMines)
             self.view.addSubview(computer.gridView)
         }
     }
     
     // MARK: Check If Ready To Play
 
-    func checkReadyToPlay(numberOfMines numberOfMines: Int, numberOfSeamonsters: Int) -> ReadyState {
-        switch (numberOfMines, numberOfSeamonsters) {
-        case (0, 0):
-            return (human.readyToPlay(checkMines: false, checkMonsters: false) && computer.readyToPlay(checkMines: false, checkMonsters: false)) ? .ReadyToPlay : .ShipsNotReady
-        case (0, 0...2):
-            return (human.readyToPlay(checkMines: false) && computer.readyToPlay(checkMines: false)) ? .ReadyToPlay : .ShipsMinesMonstersNotReady
-        case (0...2, 0):
-            return (human.readyToPlay(checkMonsters: false) && computer.readyToPlay(checkMonsters: false)) ? .ReadyToPlay : .ShipsMinesNotReady
-        case (0...2, 0...2):
-            return (human.readyToPlay() && computer.readyToPlay()) ? .ReadyToPlay : .ShipsMinesMonstersNotReady
+    func checkReadyToPlay(numberOfMines numberOfMines: Int) -> ReadyState {
+        switch (numberOfMines) {
+        case 0:
+            return (human.readyToPlay(checkMines: false) && computer.readyToPlay(checkMines: false)) ? .ReadyToPlay : .ShipsNotReady
+        case 1...2:
+            return (human.readyToPlay() && computer.readyToPlay()) ? .ReadyToPlay : .ShipsMinesNotReady
         default:
             return .Invalid
         }
@@ -154,18 +150,7 @@ extension PirateFleetViewController: PlayerDelegate {
                 
                 let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
 
-                createAlertWithTitle(mine.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
-                    self.dismissPenaltyAlert(player)
-                })
-            }
-                
-            // sea monster penalty
-            else if let seamonster = penaltyCell as? SeaMonster {
-                attackedPlayer.availableMoves.append(.GuaranteedHit)
-                
-                let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMonster : Settings.Messages.ComputerHitMonster
-                
-                createAlertWithTitle(seamonster.penaltyText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
+                createAlertWithTitle(mine.explosionText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
                     self.dismissPenaltyAlert(player)
                 })
             }

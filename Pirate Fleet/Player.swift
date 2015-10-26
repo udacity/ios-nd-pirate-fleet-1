@@ -23,7 +23,7 @@ class Player {
     
     var playerDelegate: PlayerDelegate?
     var playerType: PlayerType
-    var lastHitPenaltyCell: PenaltyCell? = nil
+    var lastHitPenaltyCell: _Mine_? = nil
     var numberOfMisses: Int = 0
     var numberOfHits: Int = 0
     
@@ -63,18 +63,12 @@ class Player {
         return gridViewController.mineCount
     }
     
-    func numberOfSeamonsters() -> Int {
-        return gridViewController.seamonsterCount
-    }
-    
-    func readyToPlay(checkMines checkMines: Bool = true, checkMonsters: Bool = true) -> Bool {
-        let shipsReady = gridViewController.hasRequiredShips()
+    func readyToPlay(checkMines checkMines: Bool = true) -> Bool {
         
+        let shipsReady = gridViewController.hasRequiredShips()
         let minesReady = (checkMines == true) ? gridViewController.hasRequiredMines() : true
         
-        let monstersReady = (checkMonsters == true) ? gridViewController.hasRequiredSeamonsters() : true
-        
-        return shipsReady && minesReady && monstersReady
+        return shipsReady && minesReady
     }
     
     // MARK: Attacking  
@@ -88,13 +82,6 @@ class Player {
             lastHitPenaltyCell = mine
             numberOfMisses++
             player.gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
-        }
-        
-        // hit a seamonster?
-        if let seamonster = player.grid[atLocation.x][atLocation.y].seamonster {
-            lastHitPenaltyCell = seamonster
-            numberOfMisses++
-            player.gridView.markImageAtLocation(seamonster.location, image: Settings.Images.SeaMonsterHit)
         }
         
         // hit a ship?
@@ -127,11 +114,6 @@ class Player {
             if !performedMoves.contains(location) {
                 // hit a mine?
                 if let _ = player.grid[location.x][location.y].mine {
-                    continue
-                }
-                
-                // hit a seamonster?
-                if let _ = player.grid[location.x][location.y].seamonster {
                     continue
                 }
                 
@@ -209,7 +191,7 @@ class Player {
         gridView.revealLocations(connectedCells!)
     }
     
-    func addPlayerShipsMinesMonsters(numberOfMines: Int = 0, numberOfSeamonsters: Int = 0) {
+    func addPlayerShipsMines(numberOfMines: Int = 0) {
         
         // randomize ship placement
         for (requiredShipType, requiredNumber) in Settings.RequiredShips {
@@ -231,20 +213,10 @@ class Player {
         // random mine placement
         for _ in 0..<numberOfMines {
             var location = RandomGridLocation()
-            var mine = Mine(location: location, penaltyText: Settings.DefaultMineText)
+            var mine = Mine(location: location, explosionText: Settings.DefaultMineText)
             while !gridViewController.addMine(mine, playerType: .Computer) {
                 location = RandomGridLocation()
-                mine = Mine(location: location, penaltyText: Settings.DefaultMineText)
-            }
-        }
-        
-        // random seamonster placement
-        for _ in 0..<numberOfSeamonsters {
-            var location = RandomGridLocation()
-            var seaMonster = SeaMonster(location: location, penaltyText: Settings.DefaultMonsterText)
-            while !gridViewController.addSeamonster(seaMonster, playerType: .Computer) {
-                location = RandomGridLocation()
-                seaMonster = SeaMonster(location: location, penaltyText: Settings.DefaultMonsterText)
+                mine = Mine(location: location, explosionText: Settings.DefaultMineText)
             }
         }
     }

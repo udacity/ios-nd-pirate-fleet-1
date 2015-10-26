@@ -23,7 +23,6 @@ class GridViewController {
         .XLarge: 0
     ]
     var mineCount = 0
-    var seamonsterCount = 0
     
     // MARK: Initializers
     
@@ -38,7 +37,6 @@ class GridViewController {
             shipCounts[shipSize] = 0
         }
         mineCount = 0
-        seamonsterCount = 0
         gridView.reset()
         gridView.setNeedsDisplay()
     }
@@ -118,23 +116,6 @@ class GridViewController {
         return true
     }
     
-    // MARK: Add Seamonster
-    
-    func addSeamonster(seamonster: SeaMonster, playerType: PlayerType = .Human) -> Bool {
-        
-        let x = seamonster.location.x, y = seamonster.location.y
-        
-        guard seamonsterCount < Settings.RequiredSeamonsters && !gridView.grid[x][y].containsObject else {
-            return false
-        }
-        
-        gridView.grid[x][y].containsObject = true
-        gridView.grid[x][y].seamonster = seamonster
-        gridView.markImageAtLocation(seamonster.location, image: Settings.Images.SeaMonster, hidden: ((playerType == .Computer) ? true : false))
-        seamonsterCount++
-        return true
-    }
-    
     // MARK: Fire Cannon
     
     func fireCannonAtLocation(location: GridLocation) -> Bool {
@@ -148,8 +129,6 @@ class GridViewController {
         gridView.grid[x][y].ship?.hitTracker.cellsHit[location] = true
         if let mine = gridView.grid[x][y].mine {
             gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
-        } else if let seamonster = gridView.grid[x][y].seamonster {
-            gridView.markImageAtLocation(seamonster.location, image: Settings.Images.SeaMonsterHit)
         } else {
             gridView.markImageAtLocation(location, image: Settings.Images.Hit)
         }
@@ -172,10 +151,6 @@ extension GridViewController {
     
     func hasRequiredMines() -> Bool {
         return mineCount == Settings.RequiredMines
-    }
-    
-    func hasRequiredSeamonsters() -> Bool {
-        return seamonsterCount == Settings.RequiredSeamonsters
     }
 }
 

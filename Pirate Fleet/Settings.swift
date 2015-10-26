@@ -11,8 +11,6 @@
 enum ReadyState: String {
     case ShipsNotReady = "You do not have the correct amount of ships. You need one small ship (size of 2), two medium ships (size of 3), one large ship (size of 4), one x-large ship (size of 5)."
     case ShipsMinesNotReady = "You do not have the correct amount of ships/mines. You need one small ship (size of 2), two medium ships (size of 3), one large ship (size of 4), one x-large ship (size of 5), and two mines."
-    case ShipsMonstersNotReady = "You do not have the correct amount of ships/monsters. You need one small ship (size of 2), two medium ships (size of 3), one large ship (size of 4), one x-large ship (size of 5), and two sea monsters."
-    case ShipsMinesMonstersNotReady = "You do not have the correct amount of ships/mines/monsters. You need one small ship (size of 2), two medium ships (size of 3), one large ship (size of 4), one x-large ship (size of 5), two mines, and two sea monsters."
     case ReadyToPlay = "All Ready!"
     case Invalid = "Invalid Ready State!"
 }
@@ -30,10 +28,8 @@ struct Settings {
         .XLarge: 1
     ]
     static var RequiredMines = 2
-    static var RequiredSeamonsters = 2
     
     static var DefaultMineText = "Boom!"
-    static var DefaultMonsterText = "Yikes!"
     
     struct Messages {
         static var GameOverTitle = "Game Over"
@@ -44,9 +40,6 @@ struct Settings {
 
         static var HumanHitMine = "You've hit a mine! The computer has been rewarded an extra move on their next turn."
         static var ComputerHitMine = "The computer has hit a mine! You've been awarded an extra move on your next turn."
-        
-        static var HumanHitMonster = "You've hit a sea monster! On the computer's next turn, they will get a guaranteed hit."
-        static var ComputerHitMonster = "The computer has hit a sea monster! On your next turn, you'll get a guaranteed hit."
         
         static var ResetAction = "Reset Game"
         static var DismissAction = "Continue"
@@ -68,8 +61,5 @@ struct Settings {
         
         static var Mine = "Mine"
         static var MineHit = "MineHit"
-        
-        static var SeaMonster = "Seamonster"
-        static var SeaMonsterHit = "SeamonsterHit"
     }
 }
