@@ -25,18 +25,6 @@ struct GridCell {
     var metaShip: MetaShip?
 }
 
-// MARK: - GameStats
-
-struct GameStats {
-    let numberOfHitsOnEnemy: Int
-    let numberOfMissesByHuman: Int
-    let enemyShipsRemaining: Int
-    let humanShipsSunk: Int
-    let sinkBonus: Int
-    let shipBonus: Int
-    let guessPenalty: Int
-}
-
 // MARK: - MetaShip
 
 class MetaShip {
@@ -48,8 +36,20 @@ class MetaShip {
                 if hit == false {
                     return false
                 }
-            }            
+            }
             return true
         }
     }
+}
+
+// MARK: - GameStats
+
+struct GameStats {
+    let numberOfHitsOnEnemy: Int
+    let numberOfMissesByHuman: Int
+    let enemyShipsRemaining: Int
+    let humanShipsSunk: Int
+    let sinkBonus: Int
+    let shipBonus: Int
+    let guessPenalty: Int
 }

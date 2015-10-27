@@ -11,8 +11,8 @@
 		A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7EF1B8E6DE2009E89A9 /* Structs.swift */; };
 		A932F7F21B8E6E29009E89A9 /* Protocols-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */; };
 		A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F31B8E6EAD009E89A9 /* Enums.swift */; };
+		A938F02D1BDEEB7A007E4548 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A938F02C1BDEEB7A007E4548 /* Protocols.swift */; };
 		A9601EC51B8E8B8800F9D044 /* MineHit.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9601EC41B8E8B8800F9D044 /* MineHit.pdf */; };
-		A9A5675B1B97A30B00F91B12 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5675A1B97A30B00F91B12 /* Protocols.swift */; settings = {ASSET_TAGS = (); }; };
 		A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */; };
 		A9C2B4611B8E2D38007983DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B45F1B8E2D38007983DB /* Main.storyboard */; };
 		A9C2B4631B8E2D38007983DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4621B8E2D38007983DB /* Assets.xcassets */; };
@@ -31,8 +31,8 @@
 		A9C2B48E1B8E2D79007983DB /* Mine.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47C1B8E2D79007983DB /* Mine.pdf */; };
 		A9C2B48F1B8E2D79007983DB /* ShipEndUp.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47D1B8E2D79007983DB /* ShipEndUp.pdf */; };
 		A9C2B4901B8E2D79007983DB /* Water.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B47E1B8E2D79007983DB /* Water.pdf */; };
-		A9D83B5F1B97881C00EBA850 /* ControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D83B5E1B97881C00EBA850 /* ControlCenter.swift */; settings = {ASSET_TAGS = (); }; };
-		A9DDAF261B9629AD00D64CD7 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DDAF251B9629AD00D64CD7 /* Functions.swift */; settings = {ASSET_TAGS = (); }; };
+		A9D83B5F1B97881C00EBA850 /* ControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D83B5E1B97881C00EBA850 /* ControlCenter.swift */; };
+		A9DDAF261B9629AD00D64CD7 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DDAF251B9629AD00D64CD7 /* Functions.swift */; };
 		A9EAC0BB1B8FD833008AD77B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAC0BA1B8FD833008AD77B /* Player.swift */; };
 		A9EAC0BD1B8FDE98008AD77B /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAC0BC1B8FDE98008AD77B /* Human.swift */; };
 /* End PBXBuildFile section */
@@ -42,8 +42,8 @@
 		A932F7EF1B8E6DE2009E89A9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Protocols-Extensions.swift"; sourceTree = "<group>"; };
 		A932F7F31B8E6EAD009E89A9 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		A938F02C1BDEEB7A007E4548 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A9601EC41B8E8B8800F9D044 /* MineHit.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = MineHit.pdf; path = Images/MineHit.pdf; sourceTree = "<group>"; };
-		A9A5675A1B97A30B00F91B12 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A9C2B4581B8E2D38007983DB /* Pirate Fleet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pirate Fleet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9C2B4601B8E2D38007983DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 			children = (
 				A932F7F31B8E6EAD009E89A9 /* Enums.swift */,
 				A9DDAF251B9629AD00D64CD7 /* Functions.swift */,
-				A9A5675A1B97A30B00F91B12 /* Protocols.swift */,
+				A938F02C1BDEEB7A007E4548 /* Protocols.swift */,
 				A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */,
 				A932F7EF1B8E6DE2009E89A9 /* Structs.swift */,
 			);
@@ -287,7 +287,7 @@
 				A9C2B4821B8E2D79007983DB /* GridViewController.swift in Sources */,
 				A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */,
 				A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */,
-				A9A5675B1B97A30B00F91B12 /* Protocols.swift in Sources */,
+				A938F02D1BDEEB7A007E4548 /* Protocols.swift in Sources */,
 				A9EAC0BD1B8FDE98008AD77B /* Human.swift in Sources */,
 				A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */,
 				A9C2B4831B8E2D79007983DB /* PirateFleetViewController.swift in Sources */,

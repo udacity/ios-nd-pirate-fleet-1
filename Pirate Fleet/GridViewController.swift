@@ -60,8 +60,8 @@ class GridViewController {
         }
         
         let start = ship.location, end = ShipEndLocation(ship)
-        
         let metaShip = MetaShip()
+        
         for x in start.x...end.x {
             for y in start.y...end.y {
                 
@@ -74,25 +74,21 @@ class GridViewController {
                 // place "front-end" of ship
                 if x == start.x && y == start.y {
                     if ship.isVertical {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType)
-                    } else {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType)
-                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType)                    }
                     continue
                 }
                 
                 // place "back-end" of ship
                 if x == end.x && y == end.y {
                     if ship.isVertical {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType)
-                    } else {
-                        gridView.markShipPiece(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType)
-                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType)                    }
                     continue
                 }
                 
                 // place middle piece of ship
-                gridView.markShipPiece(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType)
+                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType)
             }
         }
         
@@ -113,7 +109,7 @@ class GridViewController {
         
         gridView.grid[x][y].containsObject = true
         gridView.grid[x][y].mine = mine
-        gridView.markMine(mine, hidden: ((playerType == .Computer) ? true : false))
+        gridView.markImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: ((playerType == .Computer) ? true : false))
         mineCount++
         return true
     }
@@ -130,9 +126,9 @@ class GridViewController {
         
         gridView.grid[x][y].metaShip?.cellsHit[location] = true
         if let mine = gridView.grid[x][y].mine {
-            gridView.markMineHit(mine)
+            gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
         } else {
-            gridView.markHit(location)
+            gridView.markImageAtLocation(location, image: Settings.Images.Hit)
         }
         return true
     }
@@ -165,8 +161,8 @@ extension GridViewController {
             return false
         }
         
-        if let metaShip = gridView.grid[location.x][location.y].metaShip {
-            return metaShip.sunk
+        if let ship = gridView.grid[location.x][location.y].metaShip {
+            return ship.sunk
         } else {
             return false
         }

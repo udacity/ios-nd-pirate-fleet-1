@@ -29,15 +29,7 @@ class HumanObject: Player, Human {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.playerType = .Human
-    }
-    
-    // MARK: Skip Turn
-    
-    func skipTurn() {
-        skipNextTurn = false
-        if let playerDelegate = playerDelegate {
-            playerDelegate.playerDidMove(self)
-        }
+        self.availableMoves.append(.NormalMove)
     }
     
     // MARK: Modify Grid
@@ -50,7 +42,7 @@ class HumanObject: Player, Human {
         gridViewController.addMine(mine)
     }
     
-    override func addPlayerShipsAndMines(numberOfMines: Int = 0) {
+    override func addPlayerShipsMines(numberOfMines: Int = 0) {
         controlCenter.addShipsAndMines(self)
     }
     

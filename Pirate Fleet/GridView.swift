@@ -50,7 +50,7 @@ class GridView: UIView {
         super.init(frame: frame)
         
         grid = [[GridCell]]()
-
+        
         let center = self.center
         let sideLength = getSideLength()
         self.frame = CGRect(x: 0, y: 0, width: sideLength * CGFloat(Settings.DefaultGridSize.width), height: sideLength * CGFloat(Settings.DefaultGridSize.height))
@@ -73,6 +73,8 @@ class GridView: UIView {
         }
     }
 
+    // MARK: Reset
+    
     func reset() {
         for x in 0..<Settings.DefaultGridSize.width {
             for y in 0..<Settings.DefaultGridSize.height {
@@ -91,11 +93,15 @@ class GridView: UIView {
         }
     }
     
+    // MARK: Side Length
+    
     private func getSideLength() -> CGFloat {
         let widthwiseSide = frame.size.width / CGFloat(Settings.DefaultGridSize.width)
         let lengthwiseSide = frame.size.height / CGFloat(Settings.DefaultGridSize.height)
         return (widthwiseSide > lengthwiseSide) ? lengthwiseSide : widthwiseSide
     }
+    
+    // MARK: Add Background To View
     
     private func addBackgroundToView(view: UIView, backgroundImage: UIImage?) {
         let imageView = UIImageView(frame: view.bounds)
@@ -148,23 +154,11 @@ extension GridView {
 
 extension GridView {
     
-    func markMissed(location: GridLocation) {
-        addImageAtLocation(location, image: Settings.Images.Miss)
+    func markImageAtLocation(location: GridLocation, image: String, hidden: Bool = false) {
+        addImageAtLocation(location, image: image, hidden: hidden)
     }
     
-    func markHit(location: GridLocation) {
-        addImageAtLocation(location, image: Settings.Images.Hit)
-    }
-    
-    func markMineHit(mine: _Mine_) {
-        addImageAtLocation(mine.location, image: Settings.Images.MineHit)
-    }
-    
-    func markMine(mine: _Mine_, hidden: Bool = false) {
-        addImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: hidden)
-    }
-    
-    func markShipPiece(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
+    func markShipPieceAtLocation(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
         
         // if placing a computer piece, then hide it by default
         let hidden = (playerType == .Computer) ? true : false

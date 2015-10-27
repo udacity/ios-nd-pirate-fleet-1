@@ -12,22 +12,29 @@ import UIKit
 // Used to give students a clean interface 😉!
 
 struct PlayerMine: _Mine_ {
-    var location: GridLocation
-    var explosionText: String
+    let location: GridLocation
+    let explosionText: String
+}
+
+// MARK: MoveType
+
+enum MoveType {
+    case NormalMove
+    case GuaranteedHit
 }
 
 // MARK: - Player
 
 class Player {
-    
+
     // MARK: Properties
     
     var playerDelegate: PlayerDelegate?
     var playerType: PlayerType
-    var skipNextTurn = false
-    var lastHitMine: _Mine_? = nil
+    var lastHitPenaltyCell: _Mine_? = nil
     var numberOfMisses: Int = 0
     var numberOfHits: Int = 0
+    
     var performedMoves = Set<GridLocation>()
     var gridViewController: GridViewController
     var gridView: GridView {
@@ -40,6 +47,7 @@ class Player {
             return gridViewController.gridView.grid
         }
     }
+    var availableMoves = [MoveType]()
     
     // MARK: Initializers
     
@@ -50,8 +58,11 @@ class Player {
 
     func reset() {
         gridViewController.reset()
+        numberOfMisses = 0
+        numberOfHits = 0
+        lastHitPenaltyCell = nil
         performedMoves.removeAll(keepCapacity: true)
-        skipNextTurn = false
+        availableMoves.append(.NormalMove)
     }
     
     // MARK: Pre-Game Check
@@ -61,7 +72,11 @@ class Player {
     }
     
     func readyToPlay(checkMines checkMines: Bool = true) -> Bool {
-        return (checkMines == true) ? gridViewController.hasRequiredShips() && gridViewController.hasRequiredMines() : gridViewController.hasRequiredShips()
+        
+        let shipsReady = gridViewController.hasRequiredShips()
+        let minesReady = (checkMines == true) ? gridViewController.hasRequiredMines() : true
+        
+        return shipsReady && minesReady
     }
     
     // MARK: Attacking  
@@ -72,21 +87,20 @@ class Player {
         
         // hit a mine?
         if let mine = player.grid[atLocation.x][atLocation.y].mine {
-            skipNextTurn = true
-            lastHitMine = mine
+            lastHitPenaltyCell = mine
             numberOfMisses++
-            player.gridView.markMineHit(mine)
+            player.gridView.markImageAtLocation(mine.location, image: Settings.Images.MineHit)
         }
         
         // hit a ship?
         if !player.gridViewController.fireCannonAtLocation(atLocation) {
             numberOfMisses++
-            player.gridView.markMissed(atLocation)
+            player.gridView.markImageAtLocation(atLocation, image: Settings.Images.Miss)
         } else {
             // we hit something!
             numberOfHits++
-        }        
-                
+        }
+        
         if let playerDelegate = playerDelegate {
             
             if player.gridViewController.checkSink(atLocation) {
@@ -97,6 +111,75 @@ class Player {
                 playerDelegate.playerDidWin(self)
             }
             playerDelegate.playerDidMove(self)
+        }
+    }
+    
+    func attackPlayerWithGuaranteedHit(player: Player) {
+        var hitShip = false
+        
+        while hitShip == false {
+            let location = RandomGridLocation()
+            if !performedMoves.contains(location) {
+                // hit a mine?
+                if let _ = player.grid[location.x][location.y].mine {
+                    continue
+                }
+                
+                // hit a ship?
+                if !player.gridViewController.fireCannonAtLocation(location) {
+                    continue
+                } else {
+                    
+                    hitShip = true
+                    numberOfHits++
+                    performedMoves.insert(location)
+                    
+                    if let playerDelegate = playerDelegate {
+                        
+                        if player.gridViewController.checkSink(location) {
+                            playerDelegate.playerDidSinkAtLocation(self, location: location)
+                        }
+                        
+                        if player.gridViewController.checkForWin() {
+                            playerDelegate.playerDidWin(self)
+                        }
+                        playerDelegate.playerDidMove(self)
+                    }
+                }
+            }
+        }
+    }
+    
+    func attackPlayerWithGuaranteedMine(player: Player) -> Bool {
+        var hitMine = false
+        
+        if player.numberOfMines() == 0 {
+            return false
+        } else {
+            while hitMine == false {
+                let location = RandomGridLocation()
+                if !performedMoves.contains(location) {
+                    // hit a mine?
+                    if let mine = player.grid[location.x][location.y].mine {
+                        hitMine = true
+                        self.lastHitPenaltyCell = mine
+                        self.gridViewController.mineCount--
+                        player.gridViewController.fireCannonAtLocation(mine.location)
+                        
+                        performedMoves.insert(mine.location)
+                        
+                        if let playerDelegate = playerDelegate {
+                            if player.gridViewController.checkForWin() {
+                                playerDelegate.playerDidWin(self)
+                            }
+                            playerDelegate.playerDidMove(self)
+                        }
+                    } else {
+                        continue
+                    }
+                }
+            }
+            return true
         }
     }
     
@@ -116,7 +199,7 @@ class Player {
         gridView.revealLocations(connectedCells!)
     }
     
-    func addPlayerShipsAndMines(numberOfMines: Int = 0) {
+    func addPlayerShipsMines(numberOfMines: Int = 0) {
         
         // randomize ship placement
         for (requiredShipType, requiredNumber) in Settings.RequiredShips {
