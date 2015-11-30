@@ -46,16 +46,23 @@ class GridViewController {
     func addShip(ship: Ship, playerType: PlayerType = .Human) -> Bool {
         
         guard isShipRequired(ship) else {
-            let shipSize = ShipSize(rawValue: ship.length)!
-            if playerType == .Human { print("ERROR: Cannot add \(ship). You already have enough \(shipSize) ships.") }
+            if let shipSize = ShipSize(rawValue: ship.length) where playerType == .Human {
+                print("ERROR: Cannot add \(ship). You already have enough \(shipSize) ships.")
+            }
             return false
         }
         
         guard !isShipOutOfBounds(ship) else {
+            if playerType == .Human {
+                print("ERROR: Cannot add \(ship). Ship is out of bounds.")
+            }
             return false
         }
         
         guard !isShipOverlapping(ship) else {
+            if playerType == .Human {
+                print("ERROR: Cannot add \(ship). Ship overlaps another ship.")
+            }
             return false
         }
         
@@ -198,8 +205,12 @@ extension GridViewController {
     }
     
     private func isShipRequired(ship: Ship) -> Bool {
-        let shipSize = ShipSize(rawValue: ship.length)!
-        return shipCounts[shipSize] < Settings.RequiredShips[shipSize]
+        if let shipSize = ShipSize(rawValue: ship.length) {
+            return shipCounts[shipSize] < Settings.RequiredShips[shipSize]
+        } else {
+            print("ERROR: Cannot add \(ship). Ship has an invalid length of \(ship.length).")
+            return false
+        }
     }
     
     private func isShipOverlapping(ship: Ship) -> Bool {

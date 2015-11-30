@@ -52,10 +52,19 @@ class PirateFleetViewController: UIViewController {
         case .ReadyToPlay:
             readyToPlay = true
             gameOver = false
-        case .ShipsMinesNotReady, .ShipsNotReady, .Invalid:
+        case .ShipsMinesNotReady:
             readyToPlay = false
             gameOver = true
+            print(Settings.Messages.ShipsMinesNotReady)
             createAlertWithTitle(Settings.Messages.UnableToStartTitle, message: readyState.rawValue, completionHandler: nil)
+        case .ShipsNotReady:
+            readyToPlay = false
+            gameOver = true
+            print(Settings.Messages.ShipsNotReady)
+            createAlertWithTitle(Settings.Messages.UnableToStartTitle, message: readyState.rawValue, completionHandler: nil)
+        case .Invalid:
+            readyToPlay = false
+            gameOver = true
         }
     }
     
