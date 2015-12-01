@@ -110,7 +110,17 @@ class GridViewController {
         
         let x = mine.location.x, y = mine.location.y
 
+        guard !isLocationOutOfBounds(mine.location) else {
+            if playerType == .Human {
+                print("ERROR: Cannot add \(mine). Mine is out of bounds.")
+            }
+            return false
+        }
+        
         guard mineCount < Settings.RequiredMines && !gridView.grid[x][y].containsObject else {
+            if playerType == .Human {
+                print("ERROR: Cannot add \(mine). You already have enough mines.")
+            }
             return false
         }
         
@@ -198,7 +208,11 @@ extension GridViewController {
 // MARK: - Adding Ship Checks
 
 extension GridViewController {
-        
+    
+    private func isLocationOutOfBounds(location: GridLocation) -> Bool {
+        return (location.x >= Settings.DefaultGridSize.width || location.y >= Settings.DefaultGridSize.height || location.x < 0 || location.y < 0)
+    }
+    
     private func isShipOutOfBounds(ship: Ship) -> Bool {
         let start = ship.location, end = ShipEndLocation(ship)
         return (end.x >= Settings.DefaultGridSize.width || end.y >= Settings.DefaultGridSize.height || start.x < 0 || end.x < 0)
