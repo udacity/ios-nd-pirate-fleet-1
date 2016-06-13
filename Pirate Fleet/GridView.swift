@@ -25,7 +25,7 @@ class GridView: UIView {
     var isInteractive = false {
         willSet {
             if newValue {
-                let tapGesture = UITapGestureRecognizer(target: self, action: Selector("didTapCell:"))
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GridView.didTapCell(_:)))
                 addGestureRecognizer(tapGesture)
             } else {
                 if let gestureRecognizers = gestureRecognizers {
