@@ -31,13 +31,13 @@ class Computer: Player {
     
     override func reset() {
         super.reset()
-        nextMoves.removeAll(keepCapacity: true)
-        shipHitTrace.removeAll(keepCapacity: true)
+        nextMoves.removeAll(keepingCapacity: true)
+        shipHitTrace.removeAll(keepingCapacity: true)
     }
     
     // MARK: Attacking
     
-    func attack(player: Player) {
+    func attack(_ player: Player) {
         
         var move: GridLocation
         
@@ -54,7 +54,7 @@ class Computer: Player {
         
         if player.gridViewController.fireCannonAtLocation(move) {
             shipHitTrace.append(move)
-            if Settings.ComputerDifficulty == .Advanced && lastHitPenaltyCell == nil { addEducatedMoves() }
+            if Settings.ComputerDifficulty == .advanced && lastHitPenaltyCell == nil { addEducatedMoves() }
         } else {
             player.gridViewController.gridView.markImageAtLocation(move, image: Settings.Images.Miss)
         }
@@ -88,7 +88,7 @@ class Computer: Player {
         if nextMoves.isEmpty { nextMoves.insert(getRandomMove()) }
     }
     
-    private func isEducatedMoveValid(location: GridLocation) -> Bool {
+    private func isEducatedMoveValid(_ location: GridLocation) -> Bool {
         return locationInBounds(location) && !performedMoves.contains(location) && !nextMoves.contains(location)
     }
     

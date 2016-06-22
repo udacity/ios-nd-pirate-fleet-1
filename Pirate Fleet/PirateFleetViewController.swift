@@ -11,9 +11,9 @@ import UIKit
 // MARK: - PlayerDelegate
 
 protocol PlayerDelegate {
-    func playerDidMove(player: Player)
-    func playerDidWin(player: Player)
-    func playerDidSinkAtLocation(player: Player, location: GridLocation)
+    func playerDidMove(_ player: Player)
+    func playerDidWin(_ player: Player)
+    func playerDidSinkAtLocation(_ player: Player, location: GridLocation)
 }
 
 // MARK: - PirateFleetViewController
@@ -29,7 +29,7 @@ class PirateFleetViewController: UIViewController {
             
     // MARK: Lifecycle
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.initializeGame()
     }
@@ -81,7 +81,7 @@ class PirateFleetViewController: UIViewController {
         return human.numberOfMines()
     }
     
-    func setupComputer(numberOfMines numberOfMines: Int) {
+    func setupComputer(numberOfMines: Int) {
         if computer != nil {
             computer.reset()
             computer.addPlayerShipsMines(numberOfMines)
@@ -96,7 +96,7 @@ class PirateFleetViewController: UIViewController {
     
     // MARK: Check If Ready To Play
 
-    func checkReadyToPlay(numberOfMines numberOfMines: Int) -> ReadyState {
+    func checkReadyToPlay(numberOfMines: Int) -> ReadyState {
         switch (numberOfMines) {
         case 0:
             return (human.readyToPlay(checkMines: false) && computer.readyToPlay(checkMines: false)) ? .ReadyToPlay : .ShipsNotReady
@@ -109,16 +109,16 @@ class PirateFleetViewController: UIViewController {
     
     // MARK: Alert
     
-    func createAlertWithTitle(title: String, message: String, actionMessage: String? = nil, completionHandler: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func createAlertWithTitle(_ title: String, message: String, actionMessage: String? = nil, completionHandler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if let actionMessage = actionMessage {
-            let action = UIAlertAction(title: actionMessage, style: .Default, handler: completionHandler)
+            let action = UIAlertAction(title: actionMessage, style: .default, handler: completionHandler)
             alert.addAction(action)
         }
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func dismissPenaltyAlert(player: Player) {
+    func dismissPenaltyAlert(_ player: Player) {
         player.lastHitPenaltyCell = nil
         nextMove(player)
     }
@@ -127,7 +127,7 @@ class PirateFleetViewController: UIViewController {
 // MARK: - PirateFleetViewController: GridViewDelegate
 
 extension PirateFleetViewController: GridViewDelegate {
-    func didTapCell(location: GridLocation) {
+    func didTapCell(_ location: GridLocation) {
         if readyToPlay {
             if human.canAttackPlayer(computer, atLocation: location) {
                 human.attackPlayer(computer, atLocation: location)
@@ -142,19 +142,19 @@ extension PirateFleetViewController: PlayerDelegate {
     
     // MARK: PlayerDelegate
     
-    func playerDidMove(player: Player) {
+    func playerDidMove(_ player: Player) {
         
         // we've used a move
         player.availableMoves.removeLast()
         
         // which player was attacked?
-        let attackedPlayer = (player.playerType == .Human) ? computer : human
+        let attackedPlayer = (player.playerType == .human) ? computer : human
         
         // if any penalties incurred during the move, show alert
         if let mine = player.lastHitPenaltyCell {            
-            attackedPlayer.availableMoves.append(.NormalMove)
+            attackedPlayer.availableMoves.append(.normalMove)
             
-            let alertMessage = (player.playerType == .Human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
+            let alertMessage = (player.playerType == .human) ? Settings.Messages.HumanHitMine : Settings.Messages.ComputerHitMine
             createAlertWithTitle(mine.explosionText, message: alertMessage, actionMessage: Settings.Messages.DismissAction, completionHandler: { (action) in
                 self.dismissPenaltyAlert(player)
             })
@@ -163,19 +163,19 @@ extension PirateFleetViewController: PlayerDelegate {
         }        
     }
     
-    func playerDidWin(player: Player) {
+    func playerDidWin(_ player: Player) {
         
         if gameOver == false {
             switch player.playerType {
                 
             // human won!
-            case .Human:
+            case .human:
                 createAlertWithTitle(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverWin, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
                     self.initializeGame()
                 })
                 
             // computer won!
-            case .Computer:
+            case .computer:
                 createAlertWithTitle(Settings.Messages.GameOverTitle, message: Settings.Messages.GameOverLose, actionMessage: Settings.Messages.ResetAction, completionHandler: { (action) in
                     self.initializeGame()
                 })
@@ -186,25 +186,25 @@ extension PirateFleetViewController: PlayerDelegate {
         }
     }
     
-    func playerDidSinkAtLocation(player: Player, location: GridLocation) {
-        if player.playerType == .Human {
+    func playerDidSinkAtLocation(_ player: Player, location: GridLocation) {
+        if player.playerType == .human {
             computer.revealShipAtLocation(location)
         }
     }
     
     // MARK: Take Next Move
     
-    func nextMove(player: Player) {
-        (player.playerType == .Human) ? self.nextHumanMove() : self.nextComputerMove()
+    func nextMove(_ player: Player) {
+        (player.playerType == .human) ? self.nextHumanMove() : self.nextComputerMove()
     }
     
     func nextHumanMove() {
         if human.availableMoves.isEmpty {
-            computer.availableMoves.append(.NormalMove)
+            computer.availableMoves.append(.normalMove)
             computer.attack(human)
         } else {
             let nextMove: MoveType = human.availableMoves.last!
-            if nextMove == .GuaranteedHit {
+            if nextMove == .guaranteedHit {
                 human.attackPlayerWithGuaranteedHit(computer)
             }
         }
@@ -212,10 +212,10 @@ extension PirateFleetViewController: PlayerDelegate {
     
     func nextComputerMove() {
         if computer.availableMoves.isEmpty {
-            human.availableMoves.append(.NormalMove)
+            human.availableMoves.append(.normalMove)
         } else {
             let nextMove: MoveType = computer.availableMoves.last!
-            if nextMove == .GuaranteedHit {
+            if nextMove == .guaranteedHit {
                 computer.attackPlayerWithGuaranteedHit(human)
             } else {
                 computer.attack(human)

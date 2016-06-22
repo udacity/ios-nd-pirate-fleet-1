@@ -17,10 +17,10 @@ class GridViewController {
     var gridView: GridView
     var metaShips: [MetaShip] = []
     var shipCounts: [ShipSize:Int] = [
-        .Small: 0,
-        .Medium: 0,
-        .Large: 0,
-        .XLarge: 0
+        .small: 0,
+        .medium: 0,
+        .large: 0,
+        .xLarge: 0
     ]
     var mineCount = 0
     
@@ -32,7 +32,7 @@ class GridViewController {
     }
     
     func reset() {
-        metaShips.removeAll(keepCapacity: true)
+        metaShips.removeAll(keepingCapacity: true)
         for shipSize in shipCounts.keys {
             shipCounts[shipSize] = 0
         }
@@ -43,24 +43,24 @@ class GridViewController {
     
     // MARK: Add Ship
     
-    func addShip(ship: Ship, playerType: PlayerType = .Human) -> Bool {
+    func addShip(_ ship: Ship, playerType: PlayerType = .human) -> Bool {
         
         guard isShipRequired(ship) else {
-            if let shipSize = ShipSize(rawValue: ship.length) where playerType == .Human {
+            if let shipSize = ShipSize(rawValue: ship.length) where playerType == .human {
                 print("ERROR: Cannot add \(ship). You already have enough \(shipSize) ships.")
             }
             return false
         }
         
         guard !isShipOutOfBounds(ship) else {
-            if playerType == .Human {
+            if playerType == .human {
                 print("ERROR: Cannot add \(ship). Ship is out of bounds.")
             }
             return false
         }
         
         guard !isShipOverlapping(ship) else {
-            if playerType == .Human {
+            if playerType == .human {
                 print("ERROR: Cannot add \(ship). Ship overlaps another ship.")
             }
             return false
@@ -81,21 +81,21 @@ class GridViewController {
                 // place "front-end" of ship
                 if x == start.x && y == start.y {
                     if ship.isVertical {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndUp, playerType: playerType)                    } else {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndLeft, playerType: playerType)                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .endUp, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .endLeft, playerType: playerType)                    }
                     continue
                 }
                 
                 // place "back-end" of ship
                 if x == end.x && y == end.y {
                     if ship.isVertical {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndDown, playerType: playerType)                    } else {
-                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .EndRight, playerType: playerType)                    }
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .endDown, playerType: playerType)                    } else {
+                        gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: .endRight, playerType: playerType)                    }
                     continue
                 }
                 
                 // place middle piece of ship
-                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .BodyVert : .BodyHorz), playerType: playerType)
+                gridView.markShipPieceAtLocation(GridLocation(x: x, y: y), orientation: ((ship.isVertical) ? .bodyVert : .bodyHorz), playerType: playerType)
             }
         }
         
@@ -106,19 +106,19 @@ class GridViewController {
     
     // MARK: Add Mine
     
-    func addMine(mine: _Mine_, playerType: PlayerType = .Human) -> Bool {
+    func addMine(_ mine: _Mine_, playerType: PlayerType = .human) -> Bool {
         
         let x = mine.location.x, y = mine.location.y
 
         guard !isLocationOutOfBounds(mine.location) else {
-            if playerType == .Human {
+            if playerType == .human {
                 print("ERROR: Cannot add \(mine). Mine is out of bounds.")
             }
             return false
         }
         
         guard mineCount < Settings.RequiredMines && !gridView.grid[x][y].containsObject else {
-            if playerType == .Human {
+            if playerType == .human {
                 print("ERROR: Cannot add \(mine). You already have enough mines.")
             }
             return false
@@ -126,14 +126,14 @@ class GridViewController {
         
         gridView.grid[x][y].containsObject = true
         gridView.grid[x][y].mine = mine
-        gridView.markImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: ((playerType == .Computer) ? true : false))
+        gridView.markImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: ((playerType == .computer) ? true : false))
         mineCount += 1
         return true
     }
     
     // MARK: Fire Cannon
     
-    func fireCannonAtLocation(location: GridLocation) -> Bool {
+    func fireCannonAtLocation(_ location: GridLocation) -> Bool {
         
         let x = location.x, y = location.y
         
@@ -173,7 +173,7 @@ extension GridViewController {
 
 extension GridViewController {
     
-    func checkSink(location: GridLocation) -> Bool {
+    func checkSink(_ location: GridLocation) -> Bool {
         guard (gridView.grid[location.x][location.y].mine == nil) else {
             return false
         }
@@ -209,16 +209,16 @@ extension GridViewController {
 
 extension GridViewController {
     
-    private func isLocationOutOfBounds(location: GridLocation) -> Bool {
+    private func isLocationOutOfBounds(_ location: GridLocation) -> Bool {
         return (location.x >= Settings.DefaultGridSize.width || location.y >= Settings.DefaultGridSize.height || location.x < 0 || location.y < 0)
     }
     
-    private func isShipOutOfBounds(ship: Ship) -> Bool {
+    private func isShipOutOfBounds(_ ship: Ship) -> Bool {
         let start = ship.location, end = ShipEndLocation(ship)
         return (end.x >= Settings.DefaultGridSize.width || end.y >= Settings.DefaultGridSize.height || start.x < 0 || end.x < 0)
     }
     
-    private func isShipRequired(ship: Ship) -> Bool {
+    private func isShipRequired(_ ship: Ship) -> Bool {
         if let shipSize = ShipSize(rawValue: ship.length) {
             return shipCounts[shipSize] < Settings.RequiredShips[shipSize]
         } else {
@@ -227,7 +227,7 @@ extension GridViewController {
         }
     }
     
-    private func isShipOverlapping(ship: Ship) -> Bool {
+    private func isShipOverlapping(_ ship: Ship) -> Bool {
         let start = ship.location, end = ShipEndLocation(ship)
         for x in start.x...end.x {
             for y in start.y...end.y {

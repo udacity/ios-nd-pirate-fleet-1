@@ -19,11 +19,11 @@ struct Ship {
 
 class ControlCenter {
     
-    func addShipsAndMines(human: Human) {
+    func addShipsAndMines(_ human: Human) {
         // Write your code here!
     }
     
-    func calculateFinalScore(gameStats: GameStats) -> Int {
+    func calculateFinalScore(_ gameStats: GameStats) -> Int {
         
         var finalScore: Int
         

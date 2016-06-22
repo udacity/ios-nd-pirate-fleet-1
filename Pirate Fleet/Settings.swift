@@ -20,12 +20,12 @@ enum ReadyState: String {
 struct Settings {
     
     static let DefaultGridSize = GridSize(width: 8, height: 8)
-    static let ComputerDifficulty = Difficulty.Advanced
+    static let ComputerDifficulty = Difficulty.advanced
     static let RequiredShips: [ShipSize:Int] = [
-        .Small: 1,
-        .Medium: 2,
-        .Large: 1,
-        .XLarge: 1
+        .small: 1,
+        .medium: 2,
+        .large: 1,
+        .xLarge: 1
     ]
     static let RequiredMines = 2
     static let DefaultMineText = "Boom!"

@@ -11,7 +11,7 @@ import UIKit
 // MARK: - GridViewDelegate
 
 protocol GridViewDelegate {
-    func didTapCell(location: GridLocation)
+    func didTapCell(_ location: GridLocation)
 }
 
 // MARK: - GridView
@@ -103,11 +103,11 @@ class GridView: UIView {
     
     // MARK: Add Background To View
     
-    private func addBackgroundToView(view: UIView, backgroundImage: UIImage?) {
+    private func addBackgroundToView(_ view: UIView, backgroundImage: UIImage?) {
         let imageView = UIImageView(frame: view.bounds)
         imageView.image = backgroundImage
         view.addSubview(imageView)
-        view.sendSubviewToBack(imageView)
+        view.sendSubview(toBack: imageView)
     }
     
     // MARK: UIView
@@ -137,11 +137,11 @@ class GridView: UIView {
 // MARK: - GridViewDelegate
 
 extension GridView {
-    func didTapCell(tapGestureRecognizer: UITapGestureRecognizer) {
+    func didTapCell(_ tapGestureRecognizer: UITapGestureRecognizer) {
         guard let delegate = delegate else { return }
         guard isInteractive else { return }
         
-        let tapLocation = tapGestureRecognizer.locationInView(self)
+        let tapLocation = tapGestureRecognizer.location(in: self)
         let width = self.frame.size.width / CGFloat(grid.count)
         let height = self.frame.size.height / CGFloat(grid[0].count)
         
@@ -154,43 +154,43 @@ extension GridView {
 
 extension GridView {
     
-    func markImageAtLocation(location: GridLocation, image: String, hidden: Bool = false) {
+    func markImageAtLocation(_ location: GridLocation, image: String, hidden: Bool = false) {
         addImageAtLocation(location, image: image, hidden: hidden)
     }
     
-    func markShipPieceAtLocation(location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
+    func markShipPieceAtLocation(_ location: GridLocation, orientation: ShipPieceOrientation, playerType: PlayerType) {
         
         // if placing a computer piece, then hide it by default
-        let hidden = (playerType == .Computer) ? true : false
+        let hidden = (playerType == .computer) ? true : false
         
         switch orientation {
-        case .EndUp:
+        case .endUp:
             addImageAtLocation(location, image: Settings.Images.ShipEndUp, hidden: hidden)
-        case .EndDown:
+        case .endDown:
             addImageAtLocation(location, image: Settings.Images.ShipEndDown, hidden: hidden)
-        case .EndLeft:
+        case .endLeft:
             addImageAtLocation(location, image: Settings.Images.ShipEndLeft, hidden: hidden)
-        case .EndRight:
+        case .endRight:
             addImageAtLocation(location, image: Settings.Images.ShipEndRight, hidden: hidden)
-        case .BodyHorz:
+        case .bodyHorz:
             addImageAtLocation(location, image: Settings.Images.ShipBodyHorz, hidden: hidden)
-        case .BodyVert:
+        case .bodyVert:
             addImageAtLocation(location, image: Settings.Images.ShipBodyVert, hidden: hidden)
         }
     }
     
-    func revealLocations(locations: [GridLocation]) {
+    func revealLocations(_ locations: [GridLocation]) {
         for location in locations {
             for views in grid[location.x][location.y].view.subviews {
-                views.hidden = false
+                views.isHidden = false
             }
         }
     }
     
-    private func addImageAtLocation(location: GridLocation, image: String, hidden: Bool = false) {
+    private func addImageAtLocation(_ location: GridLocation, image: String, hidden: Bool = false) {
         let imageView = UIImageView(image: UIImage(named: image))
         imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: self.grid[location.x][location.y].view.frame.size)
-        imageView.hidden = hidden
+        imageView.isHidden = hidden
         self.grid[location.x][location.y].view.addSubview(imageView)
     }
 }

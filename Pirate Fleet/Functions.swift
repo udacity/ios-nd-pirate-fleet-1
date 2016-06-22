@@ -18,6 +18,6 @@ func RandomGridLocation() -> GridLocation {
 
 // MARK: - Calculate GridLocation for ship's end position
 
-func ShipEndLocation(ship: Ship) -> GridLocation {
+func ShipEndLocation(_ ship: Ship) -> GridLocation {
     return ship.isVertical ? GridLocation(x: ship.location.x, y: ship.location.y + ship.length - 1) : GridLocation(x: ship.location.x + ship.length - 1, y: ship.location.y)
 }

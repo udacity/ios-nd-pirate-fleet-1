@@ -12,8 +12,8 @@ import UIKit
 // Used to give students a clean interface 😉!
 
 protocol Human {
-    func addShipToGrid(ship: Ship)
-    func addMineToGrid(mine: _Mine_)
+    func addShipToGrid(_ ship: Ship)
+    func addMineToGrid(_ mine: _Mine_)
 }
 
 // MARK: - HumanObject
@@ -28,27 +28,27 @@ class HumanObject: Player, Human {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.playerType = .Human
-        self.availableMoves.append(.NormalMove)
+        self.playerType = .human
+        self.availableMoves.append(.normalMove)
     }
     
     // MARK: Modify Grid
     
-    func addShipToGrid(ship: Ship) {
-        gridViewController.addShip(ship)
+    func addShipToGrid(_ ship: Ship) {
+        let _ = gridViewController.addShip(ship)
     }
     
-    func addMineToGrid(mine: _Mine_) {
-        gridViewController.addMine(mine)
+    func addMineToGrid(_ mine: _Mine_) {
+        let _ = gridViewController.addMine(mine)
     }
     
-    override func addPlayerShipsMines(numberOfMines: Int = 0) {
+    override func addPlayerShipsMines(_ numberOfMines: Int = 0) {
         controlCenter.addShipsAndMines(self)
     }
     
     // MARK: Calculate Final Score
     
-    func calculateScore(computer: Computer) -> String {
+    func calculateScore(_ computer: Computer) -> String {
 
         let gameStats = GameStats(numberOfHitsOnEnemy: numberOfHits, numberOfMissesByHuman: numberOfMisses, enemyShipsRemaining: 5 - computer.gridViewController.numberSunk(), humanShipsSunk: gridViewController.numberSunk(), sinkBonus: 100, shipBonus: 100, guessPenalty: 10)
         

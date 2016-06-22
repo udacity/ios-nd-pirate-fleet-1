@@ -9,23 +9,23 @@
 // MARK: - PlayerType
 
 enum PlayerType {
-    case Human, Computer
+    case human, computer
 }
 
 // MARK: - ShipPieceOrientation
 
 enum ShipPieceOrientation {
-    case EndUp, EndDown, EndLeft, EndRight, BodyVert, BodyHorz
+    case endUp, endDown, endLeft, endRight, bodyVert, bodyHorz
 }
 
 // MARK: - Difficulty
 
 enum Difficulty: Int {
-    case Basic = 0, Advanced
+    case basic = 0, advanced
 }
 
 // MARK: - ShipSize
 
 enum ShipSize: Int {
-    case Small = 2, Medium = 3, Large = 4, XLarge = 5
+    case small = 2, medium = 3, large = 4, xLarge = 5
 }

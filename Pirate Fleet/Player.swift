@@ -19,8 +19,8 @@ struct PlayerMine: _Mine_ {
 // MARK: MoveType
 
 enum MoveType {
-    case NormalMove
-    case GuaranteedHit
+    case normalMove
+    case guaranteedHit
 }
 
 // MARK: - Player
@@ -53,7 +53,7 @@ class Player {
     
     init(frame: CGRect) {
         gridViewController = GridViewController(frame: frame)
-        playerType = .Computer
+        playerType = .computer
     }
 
     func reset() {
@@ -61,8 +61,8 @@ class Player {
         numberOfMisses = 0
         numberOfHits = 0
         lastHitPenaltyCell = nil
-        performedMoves.removeAll(keepCapacity: true)
-        availableMoves.append(.NormalMove)
+        performedMoves.removeAll(keepingCapacity: true)
+        availableMoves.append(.normalMove)
     }
     
     // MARK: Pre-Game Check
@@ -71,7 +71,7 @@ class Player {
         return gridViewController.mineCount
     }
     
-    func readyToPlay(checkMines checkMines: Bool = true) -> Bool {
+    func readyToPlay(checkMines: Bool = true) -> Bool {
         
         let shipsReady = gridViewController.hasRequiredShips()
         let minesReady = (checkMines == true) ? gridViewController.hasRequiredMines() : true
@@ -81,7 +81,7 @@ class Player {
     
     // MARK: Attacking  
     
-    func attackPlayer(player: Player, atLocation: GridLocation) {
+    func attackPlayer(_ player: Player, atLocation: GridLocation) {
         
         performedMoves.insert(atLocation)
         
@@ -114,7 +114,7 @@ class Player {
         }
     }
     
-    func attackPlayerWithGuaranteedHit(player: Player) {
+    func attackPlayerWithGuaranteedHit(_ player: Player) {
         var hitShip = false
         
         while hitShip == false {
@@ -150,7 +150,7 @@ class Player {
         }
     }
     
-    func attackPlayerWithGuaranteedMine(player: Player) -> Bool {
+    func attackPlayerWithGuaranteedMine(_ player: Player) -> Bool {
         var hitMine = false
         
         if player.numberOfMines() == 0 {
@@ -164,7 +164,7 @@ class Player {
                         hitMine = true
                         self.lastHitPenaltyCell = mine
                         self.gridViewController.mineCount -= 1
-                        player.gridViewController.fireCannonAtLocation(mine.location)
+                        let _ = player.gridViewController.fireCannonAtLocation(mine.location)
                         
                         performedMoves.insert(mine.location)
                         
@@ -183,23 +183,23 @@ class Player {
         }
     }
     
-    func canAttackPlayer(player: Player, atLocation: GridLocation) -> Bool {
+    func canAttackPlayer(_ player: Player, atLocation: GridLocation) -> Bool {
         return locationInBounds(atLocation) && !performedMoves.contains(atLocation)
     }
     
-    func locationInBounds(location: GridLocation) -> Bool {
+    func locationInBounds(_ location: GridLocation) -> Bool {
         return !(location.x < 0 || location.y < 0 || location.x >= Settings.DefaultGridSize.width || location.y >= Settings.DefaultGridSize.height)
     }
     
     
     // MARK: Modify Grid
     
-    func revealShipAtLocation(location: GridLocation) {
+    func revealShipAtLocation(_ location: GridLocation) {
         let connectedCells = grid[location.x][location.y].metaShip?.cells
         gridView.revealLocations(connectedCells!)
     }
     
-    func addPlayerShipsMines(numberOfMines: Int = 0) {
+    func addPlayerShipsMines(_ numberOfMines: Int = 0) {
         
         // randomize ship placement
         for (requiredShipType, requiredNumber) in Settings.RequiredShips {
@@ -210,7 +210,7 @@ class Player {
                 var vertical = Int(arc4random_uniform(UInt32(2))) == 0 ? true : false
                 var ship = Ship(length: shipLength, location: shipLocation, isVertical: vertical)
                 
-                while !gridViewController.addShip(ship, playerType: .Computer) {
+                while !gridViewController.addShip(ship, playerType: .computer) {
                     shipLocation = RandomGridLocation()
                     vertical = Int(arc4random_uniform(UInt32(2))) == 0 ? true : false
                     ship = Ship(length: shipLength, location: shipLocation, isVertical: vertical)
@@ -222,7 +222,7 @@ class Player {
         for _ in 0..<numberOfMines {
             var location = RandomGridLocation()
             var mine = PlayerMine(location: location, explosionText: Settings.DefaultMineText)
-            while !gridViewController.addMine(mine, playerType: .Computer) {
+            while !gridViewController.addMine(mine, playerType: .computer) {
                 location = RandomGridLocation()
                 mine = PlayerMine(location: location, explosionText: Settings.DefaultMineText)
             }
