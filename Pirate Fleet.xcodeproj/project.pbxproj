@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A914B9721B94E260005C7E2F /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914B9711B94E260005C7E2F /* Computer.swift */; };
+		A91A855D1D1AF92000C6B6CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91A855B1D1AF92000C6B6CC /* LaunchScreen.xib */; };
 		A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7EF1B8E6DE2009E89A9 /* Structs.swift */; };
 		A932F7F21B8E6E29009E89A9 /* Protocols-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */; };
 		A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7F31B8E6EAD009E89A9 /* Enums.swift */; };
@@ -16,7 +17,6 @@
 		A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */; };
 		A9C2B4611B8E2D38007983DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B45F1B8E2D38007983DB /* Main.storyboard */; };
 		A9C2B4631B8E2D38007983DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4621B8E2D38007983DB /* Assets.xcassets */; };
-		A9C2B4661B8E2D38007983DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */; };
 		A9C2B47F1B8E2D79007983DB /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B46D1B8E2D79007983DB /* GridView.swift */; };
 		A9C2B4821B8E2D79007983DB /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B4701B8E2D79007983DB /* GridViewController.swift */; };
 		A9C2B4831B8E2D79007983DB /* PirateFleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C2B4711B8E2D79007983DB /* PirateFleetViewController.swift */; };
@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		A914B9711B94E260005C7E2F /* Computer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		A91A855C1D1AF92000C6B6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A932F7EF1B8E6DE2009E89A9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Protocols-Extensions.swift"; sourceTree = "<group>"; };
 		A932F7F31B8E6EAD009E89A9 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		A9C2B45B1B8E2D38007983DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9C2B4601B8E2D38007983DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9C2B4621B8E2D38007983DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A9C2B4651B8E2D38007983DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9C2B4671B8E2D38007983DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9C2B46D1B8E2D79007983DB /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		A9C2B4701B8E2D79007983DB /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C2B45F1B8E2D38007983DB /* Main.storyboard */,
-				A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */,
+				A91A855B1D1AF92000C6B6CC /* LaunchScreen.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -254,7 +254,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9C2B4661B8E2D38007983DB /* LaunchScreen.storyboard in Resources */,
 				A9C2B4901B8E2D79007983DB /* Water.pdf in Resources */,
 				A9C2B4631B8E2D38007983DB /* Assets.xcassets in Resources */,
 				A9C2B48E1B8E2D79007983DB /* Mine.pdf in Resources */,
@@ -265,6 +264,7 @@
 				A9C2B48A1B8E2D79007983DB /* ShipEndLeft.pdf in Resources */,
 				A9C2B4891B8E2D79007983DB /* ShipEndRight.pdf in Resources */,
 				A9C2B4871B8E2D79007983DB /* Hit.pdf in Resources */,
+				A91A855D1D1AF92000C6B6CC /* LaunchScreen.xib in Resources */,
 				A9C2B48C1B8E2D79007983DB /* ShipBodyVert.pdf in Resources */,
 				A9601EC51B8E8B8800F9D044 /* MineHit.pdf in Resources */,
 				A9C2B4611B8E2D38007983DB /* Main.storyboard in Resources */,
@@ -298,20 +298,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		A91A855B1D1AF92000C6B6CC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A91A855C1D1AF92000C6B6CC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 		A9C2B45F1B8E2D38007983DB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A9C2B4601B8E2D38007983DB /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A9C2B4641B8E2D38007983DB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9C2B4651B8E2D38007983DB /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

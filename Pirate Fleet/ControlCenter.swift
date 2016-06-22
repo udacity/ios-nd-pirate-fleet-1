@@ -20,7 +20,7 @@ struct Ship {
 class ControlCenter {
     
     func addShipsAndMines(human: Human) {
-        <#WRITE YOUR CODE HERE!#>
+        // Write your code here!
     }
     
     func calculateFinalScore(gameStats: GameStats) -> Int {

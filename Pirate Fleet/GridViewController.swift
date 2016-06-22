@@ -127,7 +127,7 @@ class GridViewController {
         gridView.grid[x][y].containsObject = true
         gridView.grid[x][y].mine = mine
         gridView.markImageAtLocation(mine.location, image: Settings.Images.Mine, hidden: ((playerType == .Computer) ? true : false))
-        mineCount++
+        mineCount += 1
         return true
     }
     
@@ -198,7 +198,7 @@ extension GridViewController {
         var numberSunk = 0
         for ship in metaShips {
             if ship.sunk == true {
-                numberSunk++
+                numberSunk += 1
             }
         }
         return numberSunk
