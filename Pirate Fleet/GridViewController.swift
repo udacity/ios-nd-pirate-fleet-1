@@ -7,6 +7,17 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 // MARK: - GridViewController
 
@@ -46,7 +57,7 @@ class GridViewController {
     func addShip(_ ship: Ship, playerType: PlayerType = .human) -> Bool {
         
         guard isShipRequired(ship) else {
-            if let shipSize = ShipSize(rawValue: ship.length) where playerType == .human {
+            if let shipSize = ShipSize(rawValue: ship.length) , playerType == .human {
                 print("ERROR: Cannot add \(ship). You already have enough \(shipSize) ships.")
             }
             return false
@@ -209,16 +220,16 @@ extension GridViewController {
 
 extension GridViewController {
     
-    private func isLocationOutOfBounds(_ location: GridLocation) -> Bool {
+    fileprivate func isLocationOutOfBounds(_ location: GridLocation) -> Bool {
         return (location.x >= Settings.DefaultGridSize.width || location.y >= Settings.DefaultGridSize.height || location.x < 0 || location.y < 0)
     }
     
-    private func isShipOutOfBounds(_ ship: Ship) -> Bool {
+    fileprivate func isShipOutOfBounds(_ ship: Ship) -> Bool {
         let start = ship.location, end = ShipEndLocation(ship)
         return (end.x >= Settings.DefaultGridSize.width || end.y >= Settings.DefaultGridSize.height || start.x < 0 || end.x < 0)
     }
     
-    private func isShipRequired(_ ship: Ship) -> Bool {
+    fileprivate func isShipRequired(_ ship: Ship) -> Bool {
         if let shipSize = ShipSize(rawValue: ship.length) {
             return shipCounts[shipSize] < Settings.RequiredShips[shipSize]
         } else {
@@ -227,7 +238,7 @@ extension GridViewController {
         }
     }
     
-    private func isShipOverlapping(_ ship: Ship) -> Bool {
+    fileprivate func isShipOverlapping(_ ship: Ship) -> Bool {
         let start = ship.location, end = ShipEndLocation(ship)
         for x in start.x...end.x {
             for y in start.y...end.y {

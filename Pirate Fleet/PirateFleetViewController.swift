@@ -42,10 +42,10 @@ class PirateFleetViewController: UIViewController {
         let numberOfMines = setupHuman()
         
         // computer must match the number of penalty items added by human
-        setupComputer(numberOfMines: numberOfMines)
+        setupComputer(numberOfMines)
         
         // determine if the proper amount of ships/mines given
-        let readyState = checkReadyToPlay(numberOfMines: numberOfMines)
+        let readyState = checkReadyToPlay(numberOfMines)
         
         // are we ready to play?
         switch(readyState) {
@@ -81,7 +81,7 @@ class PirateFleetViewController: UIViewController {
         return human.numberOfMines()
     }
     
-    func setupComputer(numberOfMines: Int) {
+    func setupComputer(_ numberOfMines: Int) {
         if computer != nil {
             computer.reset()
             computer.addPlayerShipsMines(numberOfMines)
@@ -96,7 +96,7 @@ class PirateFleetViewController: UIViewController {
     
     // MARK: Check If Ready To Play
 
-    func checkReadyToPlay(numberOfMines: Int) -> ReadyState {
+    func checkReadyToPlay(_ numberOfMines: Int) -> ReadyState {
         switch (numberOfMines) {
         case 0:
             return (human.readyToPlay(checkMines: false) && computer.readyToPlay(checkMines: false)) ? .ReadyToPlay : .ShipsNotReady

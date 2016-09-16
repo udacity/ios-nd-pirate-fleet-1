@@ -95,7 +95,7 @@ class GridView: UIView {
     
     // MARK: Side Length
     
-    private func getSideLength() -> CGFloat {
+    fileprivate func getSideLength() -> CGFloat {
         let widthwiseSide = frame.size.width / CGFloat(Settings.DefaultGridSize.width)
         let lengthwiseSide = frame.size.height / CGFloat(Settings.DefaultGridSize.height)
         return (widthwiseSide > lengthwiseSide) ? lengthwiseSide : widthwiseSide
@@ -103,7 +103,7 @@ class GridView: UIView {
     
     // MARK: Add Background To View
     
-    private func addBackgroundToView(_ view: UIView, backgroundImage: UIImage?) {
+    fileprivate func addBackgroundToView(_ view: UIView, backgroundImage: UIImage?) {
         let imageView = UIImageView(frame: view.bounds)
         imageView.image = backgroundImage
         view.addSubview(imageView)
@@ -187,7 +187,7 @@ extension GridView {
         }
     }
     
-    private func addImageAtLocation(_ location: GridLocation, image: String, hidden: Bool = false) {
+    fileprivate func addImageAtLocation(_ location: GridLocation, image: String, hidden: Bool = false) {
         let imageView = UIImageView(image: UIImage(named: image))
         imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: self.grid[location.x][location.y].view.frame.size)
         imageView.isHidden = hidden

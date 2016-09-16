@@ -19,8 +19,8 @@ class Computer: Player {
             gridViewController.gridView.delegate = newValue
         }
     }
-    private var nextMoves = Set<GridLocation>()
-    private var shipHitTrace = [GridLocation]()
+    fileprivate var nextMoves = Set<GridLocation>()
+    fileprivate var shipHitTrace = [GridLocation]()
     
     // MARK: Initializers
     
@@ -71,7 +71,7 @@ class Computer: Player {
     
     // MARK: Adding New Moves
     
-    private func addEducatedMoves() {
+    fileprivate func addEducatedMoves() {
         guard shipHitTrace.count != 0 else { return }
         
         // attempt adjacent locations (N, S, E, W) for last element in hit trace
@@ -88,11 +88,11 @@ class Computer: Player {
         if nextMoves.isEmpty { nextMoves.insert(getRandomMove()) }
     }
     
-    private func isEducatedMoveValid(_ location: GridLocation) -> Bool {
+    fileprivate func isEducatedMoveValid(_ location: GridLocation) -> Bool {
         return locationInBounds(location) && !performedMoves.contains(location) && !nextMoves.contains(location)
     }
     
-    private func getRandomMove() -> GridLocation {
+    fileprivate func getRandomMove() -> GridLocation {
         var randomMoveLocation = RandomGridLocation()
         while performedMoves.contains(randomMoveLocation) {
             randomMoveLocation = RandomGridLocation()
