@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55612B791DAFA68C00BFBC51 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55612B781DAFA68C00BFBC51 /* Extensions.swift */; };
 		A914B9721B94E260005C7E2F /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914B9711B94E260005C7E2F /* Computer.swift */; };
 		A91A855D1D1AF92000C6B6CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91A855B1D1AF92000C6B6CC /* LaunchScreen.xib */; };
 		A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932F7EF1B8E6DE2009E89A9 /* Structs.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55612B781DAFA68C00BFBC51 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A914B9711B94E260005C7E2F /* Computer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
 		A91A855C1D1AF92000C6B6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A932F7EF1B8E6DE2009E89A9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				A938F02C1BDEEB7A007E4548 /* Protocols.swift */,
 				A932F7F11B8E6E29009E89A9 /* Protocols-Extensions.swift */,
 				A932F7EF1B8E6DE2009E89A9 /* Structs.swift */,
+				55612B781DAFA68C00BFBC51 /* Extensions.swift */,
 			);
 			name = Utilites;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				A9C2B45C1B8E2D38007983DB /* AppDelegate.swift in Sources */,
 				A932F7F01B8E6DE2009E89A9 /* Structs.swift in Sources */,
 				A938F02D1BDEEB7A007E4548 /* Protocols.swift in Sources */,
+				55612B791DAFA68C00BFBC51 /* Extensions.swift in Sources */,
 				A9EAC0BD1B8FDE98008AD77B /* Human.swift in Sources */,
 				A932F7F41B8E6EAD009E89A9 /* Enums.swift in Sources */,
 				A9C2B4831B8E2D79007983DB /* PirateFleetViewController.swift in Sources */,
