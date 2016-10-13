@@ -83,29 +83,23 @@ class PirateFleetViewController: UIViewController {
     
     func setupComputer(numberOfMines numberOfMines: Int) {
         if UIScreen.mainScreen().sizeType == .iPhone5 {
-            if computer != nil {
-                computer.reset()
-                computer.addPlayerShipsMines(numberOfMines)
-            } else {
-                computer = Computer(frame: CGRect(x: view.frame.size.width / 2 - 180, y: view.frame.size.height / 2 - 300, width: 360, height: 360))
-                computer.playerDelegate = self
-                computer.gridDelegate = self
-                computer.addPlayerShipsMines(numberOfMines)
-                self.view.addSubview(computer.gridView)
-            }
+            calculateWidthComputer(numberOfMines, x: 0, y: 0, width: 320, height: 360)
         } else {
-            if computer != nil {
-                computer.reset()
-                computer.addPlayerShipsMines(numberOfMines)
-            } else {
-                computer = Computer(frame: CGRect(x: view.frame.size.width / 2 - 180, y: view.frame.size.height / 2 - 300, width: 360, height: 360))
-                computer.playerDelegate = self
-                computer.gridDelegate = self
-                computer.addPlayerShipsMines(numberOfMines)
-                self.view.addSubview(computer.gridView)
-            }
+            calculateWidthComputer(numberOfMines, x: view.frame.size.width / 2 - 180, y: view.frame.size.height / 2 - 300, width: 360, height: 360)
         }
-        
+    }
+    
+    func calculateWidthComputer(numberOfItems: Int, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+        if computer != nil {
+            computer.reset()
+            computer.addPlayerShipsMines(numberOfItems)
+        } else {
+            computer = Computer(frame: CGRect(x: self.view.frame.size.width / 2 - 180, y: self.view.frame.size.height / 2 - 300, width: 360, height: 360))
+            computer.playerDelegate = self
+            computer.gridDelegate = self
+            computer.addPlayerShipsMines(numberOfItems)
+            self.view.addSubview(computer.gridView)
+        }
     }
     
     // MARK: Check If Ready To Play
